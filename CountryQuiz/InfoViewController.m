@@ -9,7 +9,6 @@
 #import "InfoViewController.h"
 #import "Country.h"
 
-
 @interface InfoViewController ()
 
 @end
@@ -21,8 +20,10 @@
     
     Country *country = [self.allCountries objectAtIndex:_selectedCountry.row];
     NSString *popString = [NSNumberFormatter localizedStringFromNumber:@(country.population)
-                                                           numberStyle:NSNumberFormatterDecimalStyle];;//[NSString stringWithFormat:@"%d", country.population];
-    NSString *areaString = [NSString stringWithFormat:@"%d", country.area];
+                                                           numberStyle:NSNumberFormatterDecimalStyle];//[NSString stringWithFormat:@"%d", country.population];
+    NSString *areaString = [NSNumberFormatter localizedStringFromNumber:@(country.area)
+                                                            numberStyle:NSNumberFormatterDecimalStyle];//[NSString stringWithFormat:@"%d", country.area];
+    areaString = [NSString stringWithFormat:@"%@ km\u00b2",areaString];
     self.name.text=country.name;
     self.countryRegion.text = country.region;
     self.countryCap.text = country.capital;

@@ -13,11 +13,19 @@
 -(void)insertInfo:(NSDictionary*)newCountry{
     
     
-    self.name = [newCountry objectForKey:@"name"];    
+    self.name = [newCountry objectForKey:@"name"];
     self.population = [[newCountry objectForKey:@"population"] intValue];
     //self.index
     self.capital = [newCountry objectForKey:@"capital"];
-    self.area = (int)[newCountry objectForKey:@"area"];
+    
+    @try {
+        self.area = [[newCountry objectForKey:@"area"] intValue];
+    }
+    @catch (NSException *exception) {
+        self.area = 0;
+    }
+    
+    //self.area = (int)[newCountry objectForKey:@"area"];
     self.region = [newCountry objectForKey:@"region"];
     self.subregion = [newCountry objectForKey:@"subregion"];
     self.countryCode2 = [newCountry objectForKey:@"alpha2Code"];
