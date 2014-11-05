@@ -9,6 +9,7 @@
 #import "QuizViewController.h"
 #import "UNIRest.h"
 #import "QuizMenuViewController.h"
+#import "DXAlertView.h"
 #include <stdlib.h>
 #include <Parse/Parse.h>
 
@@ -263,14 +264,38 @@
 }
 
 - (void)endQuiz {
+    
+    
     PFUser *User = [PFUser currentUser];
     
     if ([[[PFUser currentUser] objectForKey:@"score"] intValue] < self.score) {
         User[@"score"] = @(self.score);
         [User save];
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"Congratulations" contentText:[NSString stringWithFormat:@"New high score of %d!", self.score] leftButtonTitle:nil rightButtonTitle:@"Done"];
+        [alert show];
+        alert.rightBlock = ^() {
+            //NSLog(@"Button clicked");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        alert.dismissBlock = ^() {
+            //NSLog(@"Do something interesting after dismiss block");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
+    else {
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Score: %d", self.score] contentText:@"Not a high score" leftButtonTitle:nil rightButtonTitle:@"Done"];
+        [alert show];
+        alert.rightBlock = ^() {
+            //NSLog(@"Button clicked");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        alert.dismissBlock = ^() {
+            //NSLog(@"Do something interesting after dismiss block");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 -(void)increaseProgressValue {
