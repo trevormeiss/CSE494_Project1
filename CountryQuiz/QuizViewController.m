@@ -248,8 +248,12 @@
 
 - (void)endQuiz {
     PFUser *User = [PFUser currentUser];
-    User[@"score"] = @(self.score);
-    [User save];
+    
+    if ([[[PFUser currentUser] objectForKey:@"score"] intValue] < self.score) {
+        User[@"score"] = @(self.score);
+        [User save];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
