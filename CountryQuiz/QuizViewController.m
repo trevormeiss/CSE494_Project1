@@ -196,6 +196,7 @@
         self.currentQuestion++;
         self.qCountLabel.text = [NSString stringWithFormat:@"Question %d/%d", self.currentQuestion, numQuestions];
         self.answered = NO;
+        [self enableButtons];
         [self increaseProgressValue];
     }
     else {
@@ -217,6 +218,7 @@
 
 -(void)evaluateScore:(id)selectedAnswer{
     self.answered = YES;
+    [self disableButtons];
     if([selectedAnswer currentTitle] == [self.realAnswer currentTitle]){
         //correct answer
         int scoreAdd = 1;
@@ -244,6 +246,20 @@
                                    selector:@selector(nextQuestion)
                                    userInfo:nil
                                     repeats:NO];
+}
+
+- (void)disableButtons {
+    self.answer1.enabled = NO;
+    self.answer2.enabled = NO;
+    self.answer3.enabled = NO;
+    self.answer4.enabled = NO;
+}
+
+- (void)enableButtons {
+    self.answer1.enabled = YES;
+    self.answer2.enabled = YES;
+    self.answer3.enabled = YES;
+    self.answer4.enabled = YES;
 }
 
 - (void)endQuiz {
