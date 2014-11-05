@@ -10,6 +10,7 @@
 #import "UNIRest.h"
 #import "QuizMenuViewController.h"
 #include <stdlib.h>
+#include <Parse/Parse.h>
 
 #define numQuestions 10
 #define limit1 0.25
@@ -246,9 +247,9 @@
 }
 
 - (void)endQuiz {
-    //****************************************
-    // Here is where we should save the score
-    //****************************************
+    PFUser *User = [PFUser currentUser];
+    User[@"score"] = @(self.score);
+    [User save];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -18,15 +18,27 @@
 - (IBAction)LogOutButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
+@property int score;
+
 
 @end
 
 @implementation MainMenuViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self getAllCountryInfo];
+    self.score = 0;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
     self.usernameLabel.text = [[PFUser currentUser] username];
 }
 
@@ -50,9 +62,9 @@
     [signUpViewController setDelegate:self]; // Set ourselves as the delegate
     
     // Assign our sign up controller to be displayed from the login controller
-    /*[logInViewController setSignUpController:signUpViewController];
+    [logInViewController setSignUpController:signUpViewController];
      
-     self.view.backgroundColor = [UIColor colorWithPatternImage:
+    /* self.view.backgroundColor = [UIColor colorWithPatternImage:
      [UIImage imageNamed:@"Flags_Background.jpg"]]; */
     /*label.text = @"My Logo";
      [label sizeToFit];
@@ -144,6 +156,10 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    
+    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
+    self.usernameLabel.text = [[PFUser currentUser] username];
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -184,7 +200,13 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
+    //Sign up user with highScore of 0
+    
+    user[@"score"] = @(self.score);
+    [user save];
+    
+    [self dismissViewControllerAnimated:YES completion:Nil]; // Dismiss the PFSignUpViewController
+    
 }
 
 // Sent to the delegate when the sign up attempt fails.
