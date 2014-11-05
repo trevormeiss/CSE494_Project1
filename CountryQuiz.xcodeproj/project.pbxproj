@@ -29,6 +29,11 @@
 		8326A0AD1A08790600B08FCA /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8326A0A71A08790600B08FCA /* Icon-Small@2x.png */; };
 		8326A0AE1A08790600B08FCA /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8326A0A81A08790600B08FCA /* Icon-Small@3x.png */; };
 		83300ADA1A07340300D0808B /* CountryQuiz_isolated.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83300AD91A07340300D0808B /* CountryQuiz_isolated.jpg */; };
+		834524BA1A0AB37C008D0F2A /* DXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 834524B91A0AB37C008D0F2A /* DXAlertView.m */; };
+		834524BF1A0AB390008D0F2A /* btn_close_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 834524BB1A0AB390008D0F2A /* btn_close_normal.png */; };
+		834524C01A0AB390008D0F2A /* btn_close_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834524BC1A0AB390008D0F2A /* btn_close_normal@2x.png */; };
+		834524C11A0AB390008D0F2A /* btn_close_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 834524BD1A0AB390008D0F2A /* btn_close_selected.png */; };
+		834524C21A0AB390008D0F2A /* btn_close_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 834524BE1A0AB390008D0F2A /* btn_close_selected@2x.png */; };
 		B50D9E4019FEF3A500DC67F8 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D9E3F19FEF3A500DC67F8 /* MainMenuViewController.m */; };
 		B50D9E4C19FEFF1100DC67F8 /* QuizMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D9E4B19FEFF1100DC67F8 /* QuizMenuViewController.m */; };
 		B516E9B119FAF7A200852353 /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = B516E9B019FAF7A200852353 /* Country.m */; };
@@ -89,6 +94,12 @@
 		8326A0A71A08790600B08FCA /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		8326A0A81A08790600B08FCA /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
 		83300AD91A07340300D0808B /* CountryQuiz_isolated.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CountryQuiz_isolated.jpg; sourceTree = "<group>"; };
+		834524B81A0AB37C008D0F2A /* DXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAlertView.h; sourceTree = "<group>"; };
+		834524B91A0AB37C008D0F2A /* DXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAlertView.m; sourceTree = "<group>"; };
+		834524BB1A0AB390008D0F2A /* btn_close_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_normal.png; sourceTree = "<group>"; };
+		834524BC1A0AB390008D0F2A /* btn_close_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_normal@2x.png"; sourceTree = "<group>"; };
+		834524BD1A0AB390008D0F2A /* btn_close_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_close_selected.png; sourceTree = "<group>"; };
+		834524BE1A0AB390008D0F2A /* btn_close_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_selected@2x.png"; sourceTree = "<group>"; };
 		B50D9E3E19FEF3A500DC67F8 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		B50D9E3F19FEF3A500DC67F8 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		B50D9E4A19FEFF1100DC67F8 /* QuizMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizMenuViewController.h; sourceTree = "<group>"; };
@@ -230,6 +241,8 @@
 				B52AA46419F83AD70069BC08 /* QuizViewController.m */,
 				B516E9AF19FAF7A200852353 /* Country.h */,
 				B516E9B019FAF7A200852353 /* Country.m */,
+				834524B81A0AB37C008D0F2A /* DXAlertView.h */,
+				834524B91A0AB37C008D0F2A /* DXAlertView.m */,
 				B52AA46919F83AD70069BC08 /* Images.xcassets */,
 				B52AA46B19F83AD70069BC08 /* LaunchScreen.xib */,
 				B52AA45C19F83AD70069BC08 /* Supporting Files */,
@@ -240,6 +253,10 @@
 		B52AA45C19F83AD70069BC08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				834524BB1A0AB390008D0F2A /* btn_close_normal.png */,
+				834524BC1A0AB390008D0F2A /* btn_close_normal@2x.png */,
+				834524BD1A0AB390008D0F2A /* btn_close_selected.png */,
+				834524BE1A0AB390008D0F2A /* btn_close_selected@2x.png */,
 				8326A0A31A08790600B08FCA /* Icon-40@2x.png */,
 				8326A0A41A08790600B08FCA /* Icon-40@3x.png */,
 				8326A0A51A08790600B08FCA /* Icon-60@2x.png */,
@@ -403,16 +420,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834524BF1A0AB390008D0F2A /* btn_close_normal.png in Resources */,
 				8326A0AE1A08790600B08FCA /* Icon-Small@3x.png in Resources */,
 				B52AA46819F83AD70069BC08 /* Main.storyboard in Resources */,
 				B52AA46D19F83AD70069BC08 /* LaunchScreen.xib in Resources */,
 				83300ADA1A07340300D0808B /* CountryQuiz_isolated.jpg in Resources */,
+				834524C21A0AB390008D0F2A /* btn_close_selected@2x.png in Resources */,
 				8326A0AD1A08790600B08FCA /* Icon-Small@2x.png in Resources */,
+				834524C11A0AB390008D0F2A /* btn_close_selected.png in Resources */,
 				8326A0A91A08790600B08FCA /* Icon-40@2x.png in Resources */,
 				B52AA46A19F83AD70069BC08 /* Images.xcassets in Resources */,
 				8326A0AA1A08790600B08FCA /* Icon-40@3x.png in Resources */,
 				8326A0AC1A08790600B08FCA /* Icon-60@3x.png in Resources */,
 				831744381A04508300EE8625 /* Flags_Background.jpg in Resources */,
+				834524C01A0AB390008D0F2A /* btn_close_normal@2x.png in Resources */,
 				8326A0AB1A08790600B08FCA /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +469,7 @@
 				B50D9E4C19FEFF1100DC67F8 /* QuizMenuViewController.m in Sources */,
 				B52AA56A19F84BD60069BC08 /* UNIHTTPRequest.m in Sources */,
 				B52AA56B19F84BD60069BC08 /* UNIHTTPRequestWithBody.m in Sources */,
+				834524BA1A0AB37C008D0F2A /* DXAlertView.m in Sources */,
 				B52AA56619F84BD60069BC08 /* UNIHTTPResponse.m in Sources */,
 				B52AA45F19F83AD70069BC08 /* main.m in Sources */,
 				B52AA56C19F84BD60069BC08 /* UNIRest.m in Sources */,
