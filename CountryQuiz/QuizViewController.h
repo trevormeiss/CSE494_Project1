@@ -13,5 +13,6 @@
 
 @property (nonatomic, retain) NSMutableArray *allCountries;
 @property int quizType;
+@property bool hardModeEnabled;
 @end
 

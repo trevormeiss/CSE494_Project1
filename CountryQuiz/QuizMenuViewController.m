@@ -15,6 +15,7 @@
 - (IBAction)populationButton:(id)sender;
 - (IBAction)subregionButton:(id)sender;
 - (IBAction)randomButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *hardModeSwitch;
 @property int quizType;
 @end
 
@@ -40,6 +41,14 @@
     QuizViewController *dest = segue.destinationViewController;
     dest.allCountries = self.allCountries;
     dest.quizType = self.quizType;
+    if(self.hardModeSwitch.on)
+    {
+        dest.hardModeEnabled = YES;
+    }
+    else
+    {
+        dest.hardModeEnabled = NO;
+    }
 }
 
 
