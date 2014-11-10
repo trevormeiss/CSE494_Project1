@@ -47,6 +47,9 @@
 @property BOOL answered;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 - (IBAction)quitButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *hardModeTextField;
+@property (weak, nonatomic) IBOutlet UIButton *hardModeButton;
+- (IBAction)hardModeButtonPressed:(id)sender;
 
 @end
 
@@ -60,10 +63,31 @@
     // Do any additional setup after loading the view, typically from a nib.
     //[self removeCountryFromList];
     
+    if(self.hardModeEnabled)
+    {
+        [self disableButtons];
+        self.answer1.hidden = YES;
+        self.answer2.hidden = YES;
+        self.answer3.hidden = YES;
+        self.answer4.hidden = YES;
+    }
+    else
+    {
+        self.hardModeTextField.enabled = NO;
+        self.hardModeTextField.hidden = YES;
+        self.hardModeButton.enabled = NO;
+        self.hardModeButton.hidden = YES;
+    }
+    
     progressValue = 0.0f;
     self.currentQuestion = 0;
     
     [self nextQuestion];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -191,13 +215,26 @@
 - (void)nextQuestion{
     if (self.currentQuestion < numQuestions) {
         [self resetProgressView];
-        [self resetButtonColors];
         [self getNewCountry];
         [self getQuestion];
         self.currentQuestion++;
         self.qCountLabel.text = [NSString stringWithFormat:@"Question %d/%d", self.currentQuestion, numQuestions];
         self.answered = NO;
-        [self enableButtons];
+        if(!self.hardModeEnabled)
+        {
+            [self enableButtons];
+            [self resetButtonColors];
+        }
+        else
+        {
+            self.hardModeTextField.enabled = YES;
+            self.hardModeTextField.text = @"";
+            [self.hardModeTextField setBackgroundColor:[UIColor whiteColor]];
+            self.hardModeButton.enabled = YES;
+            [self.hardModeButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [self.hardModeButton setTitle:@"Submit" forState:UIControlStateNormal];
+            
+        }
         [self increaseProgressValue];
     }
     else {
@@ -215,6 +252,44 @@
 }
 - (IBAction)answer4:(id)sender {
     [self evaluateScore:self.answer4];
+}
+- (IBAction)hardModeButtonPressed:(id)sender
+{
+    [self evaluateScoreHardMode:self.hardModeTextField.text];
+}
+
+-(void)evaluateScoreHardMode:(id)selectedAnswer{
+    self.answered = YES;
+    self.hardModeButton.enabled = NO;
+    self.hardModeTextField.enabled = NO;
+    if([[selectedAnswer lowercaseString] isEqualToString:[[self.realAnswer currentTitle] lowercaseString]]){
+        //correct answer
+        int scoreAdd = 1;
+        if (progressValue < limit1) {
+            scoreAdd = 4;
+        }
+        else if (progressValue < limit2) {
+            scoreAdd = 3;
+        }
+        else if (progressValue < 1) {
+            scoreAdd = 2;
+        }
+        self.score += scoreAdd;
+        [self.hardModeTextField setBackgroundColor:[UIColor greenColor]];
+    }
+    else{
+        //wrong answer
+        //self.score --;
+        [self.hardModeTextField setBackgroundColor:[UIColor redColor]];
+        [self.hardModeButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [self.hardModeButton setTitle:[self.realAnswer currentTitle] forState:UIControlStateNormal];
+    }
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d",self.score]];
+    [NSTimer scheduledTimerWithTimeInterval:2
+                                     target:self
+                                   selector:@selector(nextQuestion)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 -(void)evaluateScore:(id)selectedAnswer{
