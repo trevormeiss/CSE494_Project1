@@ -10,6 +10,7 @@
 #import "Country.h"
 #import "QuizMenuViewController.h"
 #import "CountryTableViewController.h" 
+#import "ScoreBoardViewController.h"
 #import <Parse/Parse.h>
 
 @interface MainMenuViewController ()
@@ -134,6 +135,10 @@
         dest.allCountries = self.allCountries;
         //QuizMenuViewController *dest = segue.destinationViewController;
         //dest.allCountries = self.allCountries;
+    }
+    if([segue.identifier isEqual: @"score"])
+    {
+        
     }
 }
 

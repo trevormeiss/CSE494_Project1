@@ -60,6 +60,8 @@
 		B54E2DB01A0AB97000D1B568 /* Assignment5Ideas.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B54E2DAF1A0AB97000D1B568 /* Assignment5Ideas.pdf */; };
 		DCBDA7AC1A017103008AA288 /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBDA7AB1A017103008AA288 /* CountryTableViewController.m */; };
 		DCBDA7AF1A018343008AA288 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBDA7AE1A018343008AA288 /* InfoViewController.m */; };
+		E323D3101A1164C900626F40 /* ScoreBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E323D30F1A1164C900626F40 /* ScoreBoardViewController.m */; };
+		E391F2271A11B4360082849F /* TopScoreObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E391F2261A11B4360082849F /* TopScoreObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,10 @@
 		DCBDA7AB1A017103008AA288 /* CountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryTableViewController.m; sourceTree = "<group>"; };
 		DCBDA7AD1A018343008AA288 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		DCBDA7AE1A018343008AA288 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		E323D30E1A1164C900626F40 /* ScoreBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoardViewController.h; sourceTree = "<group>"; };
+		E323D30F1A1164C900626F40 /* ScoreBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBoardViewController.m; sourceTree = "<group>"; };
+		E391F2251A11B4360082849F /* TopScoreObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopScoreObject.h; sourceTree = "<group>"; };
+		E391F2261A11B4360082849F /* TopScoreObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopScoreObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,11 +234,15 @@
 		B52AA45B19F83AD70069BC08 /* CountryQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				E391F2251A11B4360082849F /* TopScoreObject.h */,
+				E391F2261A11B4360082849F /* TopScoreObject.m */,
 				B50D9E4A19FEFF1100DC67F8 /* QuizMenuViewController.h */,
 				B50D9E4B19FEFF1100DC67F8 /* QuizMenuViewController.m */,
 				B50D9E3E19FEF3A500DC67F8 /* MainMenuViewController.h */,
 				B50D9E3F19FEF3A500DC67F8 /* MainMenuViewController.m */,
 				B52AA46619F83AD70069BC08 /* Main.storyboard */,
+				E323D30E1A1164C900626F40 /* ScoreBoardViewController.h */,
+				E323D30F1A1164C900626F40 /* ScoreBoardViewController.m */,
 				DCBDA7AD1A018343008AA288 /* InfoViewController.h */,
 				DCBDA7AE1A018343008AA288 /* InfoViewController.m */,
 				DCBDA7AA1A017103008AA288 /* CountryTableViewController.h */,
@@ -459,11 +469,13 @@
 				B52AA56819F84BD60069BC08 /* UNIJsonNode.m in Sources */,
 				B52AA56019F84BD60069BC08 /* Base64.m in Sources */,
 				DCBDA7AF1A018343008AA288 /* InfoViewController.m in Sources */,
+				E391F2271A11B4360082849F /* TopScoreObject.m in Sources */,
 				B52AA46519F83AD70069BC08 /* QuizViewController.m in Sources */,
 				B52AA56419F84BD60069BC08 /* UNIHTTPBinaryResponse.m in Sources */,
 				B52AA56319F84BD60069BC08 /* UNISimpleRequest.m in Sources */,
 				DCBDA7AC1A017103008AA288 /* CountryTableViewController.m in Sources */,
 				B50D9E4019FEF3A500DC67F8 /* MainMenuViewController.m in Sources */,
+				E323D3101A1164C900626F40 /* ScoreBoardViewController.m in Sources */,
 				B52AA56519F84BD60069BC08 /* UNIHTTPJsonResponse.m in Sources */,
 				B52AA56919F84BD60069BC08 /* UNIHTTPClientHelper.m in Sources */,
 				B52AA56219F84BD60069BC08 /* UNIBodyRequest.m in Sources */,
