@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface InfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *name;

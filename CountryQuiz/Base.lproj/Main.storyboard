@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -246,6 +245,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FyV-Sd-vEE">
                                 <rect key="frame" x="16" y="109" width="288" height="131"/>
                             </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Uxa-Gs-6F4">
+                                <rect key="frame" x="40" y="430" width="240" height="128"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -287,6 +289,7 @@
                         <outlet property="countryRegion" destination="PhM-XP-PvE" id="DIR-nL-IUn"/>
                         <outlet property="countrySubr" destination="rqo-g6-LdQ" id="m6D-UY-ufW"/>
                         <outlet property="flagPic" destination="FyV-Sd-vEE" id="qOw-X5-ok8"/>
+                        <outlet property="mapView" destination="Uxa-Gs-6F4" id="0Sn-7S-BYa"/>
                         <outlet property="name" destination="qXv-Pd-cCJ" id="SeQ-CI-5B4"/>
                         <outlet property="popCount" destination="eCm-fO-hE8" id="KoP-Ww-edH"/>
                     </connections>

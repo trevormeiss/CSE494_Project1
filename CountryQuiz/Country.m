@@ -25,6 +25,11 @@
         self.area = 0;
     }
     
+    //"latlng":[60.116667,19.9]
+    NSArray *latlng = [newCountry objectForKey:@"latlng"];
+    self.latitude = [[latlng objectAtIndex:0] doubleValue];
+    self.longitude = [[latlng objectAtIndex:1] doubleValue];
+    
     //self.area = (int)[newCountry objectForKey:@"area"];
     self.region = [newCountry objectForKey:@"region"];
     self.subregion = [newCountry objectForKey:@"subregion"];

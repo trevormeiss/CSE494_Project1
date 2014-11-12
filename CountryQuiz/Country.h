@@ -15,6 +15,8 @@
 @property int index;
 @property NSString *capital;
 @property int area;
+@property double latitude;
+@property double longitude;
 @property NSString *region;
 @property NSString *subregion;
 @property NSString *countryCode2;
