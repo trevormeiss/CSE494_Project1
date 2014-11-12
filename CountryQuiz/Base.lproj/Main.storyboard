@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CountryQuiz_isolated.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-w3-Cc2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CountryQuiz_isolated.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-w3-Cc2">
                                 <rect key="frame" x="38" y="77" width="244" height="163"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MoG-w3-Cc2" secondAttribute="height" multiplier="3:2" id="QzX-7s-Pbz"/>
@@ -190,19 +190,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp5-az-Vzt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Region" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp5-az-Vzt">
                                 <rect key="frame" x="40" y="371" width="54" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SubRegion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RJ-y2-deh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SubRegion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RJ-y2-deh">
                                 <rect key="frame" x="40" y="401" width="85" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-XP-PvE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-XP-PvE">
                                 <rect key="frame" x="238" y="371" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -231,7 +231,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqo-g6-LdQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqo-g6-LdQ">
                                 <rect key="frame" x="238" y="401" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -325,15 +325,6 @@
                                     <action selector="capitalButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="HVQ-0S-zCP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLv-ED-obB">
-                                <rect key="frame" x="123" y="225" width="74" height="30"/>
-                                <state key="normal" title="Population">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="populationButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="Nrk-Fy-dwl"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVf-mX-VQl">
                                 <rect key="frame" x="125" y="263" width="70" height="30"/>
                                 <state key="normal" title="Subregion">
@@ -343,8 +334,23 @@
                                     <action selector="subregionButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="EMe-aT-2vk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Quiz Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrG-yV-rm7">
+                                <rect key="frame" x="93" y="103" width="134.5" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eym-bC-FHV">
+                                <rect key="frame" x="136" y="301" width="49" height="30"/>
+                                <state key="normal" title="Region">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="regionButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="TkF-UV-AZI"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqV-Fj-fam">
-                                <rect key="frame" x="131" y="301" width="58" height="30"/>
+                                <rect key="frame" x="131" y="339" width="58" height="30"/>
                                 <state key="normal" title="Random">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -352,30 +358,37 @@
                                     <action selector="randomButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="8MN-Ow-eRT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Quiz Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrG-yV-rm7">
-                                <rect key="frame" x="93" y="103" width="135" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLv-ED-obB">
+                                <rect key="frame" x="123" y="225" width="74" height="30"/>
+                                <state key="normal" title="Population">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="populationButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="Nrk-Fy-dwl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="WqV-Fj-fam" secondAttribute="centerY" constant="-76" id="1Dp-gU-vQr"/>
                             <constraint firstItem="y7N-0Q-wja" firstAttribute="top" secondItem="hrG-yV-rm7" secondAttribute="bottom" constant="25" id="1ta-vs-blM"/>
+                            <constraint firstAttribute="centerY" secondItem="UVf-mX-VQl" secondAttribute="centerY" constant="-38" id="8uk-oE-ULJ"/>
+                            <constraint firstAttribute="centerY" secondItem="eym-bC-FHV" secondAttribute="centerY" constant="-76" id="CBe-bL-wne"/>
                             <constraint firstAttribute="centerX" secondItem="WqV-Fj-fam" secondAttribute="centerX" id="Fs1-n7-Sju"/>
+                            <constraint firstAttribute="centerY" secondItem="WqV-Fj-fam" secondAttribute="centerY" constant="-114" id="L0Q-ox-QMP"/>
                             <constraint firstAttribute="centerX" secondItem="frP-YQ-ayE" secondAttribute="centerX" id="OhM-wp-wdM"/>
                             <constraint firstAttribute="centerX" secondItem="y7N-0Q-wja" secondAttribute="centerX" id="PVh-zU-96e"/>
                             <constraint firstAttribute="centerY" secondItem="DLv-ED-obB" secondAttribute="centerY" id="VjM-oi-xeS"/>
                             <constraint firstItem="DLv-ED-obB" firstAttribute="top" secondItem="frP-YQ-ayE" secondAttribute="bottom" constant="8" id="XPR-PW-2TZ"/>
                             <constraint firstAttribute="centerY" secondItem="hrG-yV-rm7" secondAttribute="centerY" constant="126.5" id="XY3-7F-M87"/>
                             <constraint firstAttribute="centerX" secondItem="hrG-yV-rm7" secondAttribute="centerX" id="Z4l-de-uB8"/>
-                            <constraint firstItem="WqV-Fj-fam" firstAttribute="top" secondItem="UVf-mX-VQl" secondAttribute="bottom" constant="8" id="b1h-W6-sd2"/>
+                            <constraint firstItem="WqV-Fj-fam" firstAttribute="top" secondItem="eym-bC-FHV" secondAttribute="bottom" constant="8" id="aUm-UG-XWt"/>
                             <constraint firstItem="frP-YQ-ayE" firstAttribute="top" secondItem="y7N-0Q-wja" secondAttribute="bottom" constant="8" id="bUV-ca-5bo"/>
                             <constraint firstAttribute="centerX" secondItem="UVf-mX-VQl" secondAttribute="centerX" id="dHq-CK-9ok"/>
                             <constraint firstAttribute="centerY" secondItem="frP-YQ-ayE" secondAttribute="centerY" constant="38" id="eX2-BP-oHf"/>
+                            <constraint firstItem="eym-bC-FHV" firstAttribute="top" secondItem="UVf-mX-VQl" secondAttribute="bottom" constant="8" id="fxw-le-glk"/>
                             <constraint firstAttribute="centerY" secondItem="y7N-0Q-wja" secondAttribute="centerY" constant="76" id="l64-Mm-1gP"/>
                             <constraint firstAttribute="centerX" secondItem="DLv-ED-obB" secondAttribute="centerX" id="pVK-Rn-pUr"/>
+                            <constraint firstAttribute="centerX" secondItem="eym-bC-FHV" secondAttribute="centerX" constant="-0.5" id="uoo-cR-u6M"/>
                             <constraint firstItem="UVf-mX-VQl" firstAttribute="top" secondItem="DLv-ED-obB" secondAttribute="bottom" constant="8" id="ze0-56-SfC"/>
                         </constraints>
                     </view>

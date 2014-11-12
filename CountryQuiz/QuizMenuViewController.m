@@ -15,6 +15,7 @@
 - (IBAction)populationButton:(id)sender;
 - (IBAction)subregionButton:(id)sender;
 - (IBAction)randomButton:(id)sender;
+- (IBAction)regionButton:(id)sender;
 @property int quizType;
 @end
 
@@ -65,6 +66,11 @@
 
 - (IBAction)randomButton:(id)sender {
     self.quizType = 4;
+    [self performSegueWithIdentifier: @"startQuiz" sender:self];
+}
+
+- (IBAction)regionButton:(id)sender {
+    self.quizType = 5;
     [self performSegueWithIdentifier: @"startQuiz" sender:self];
 }
 
