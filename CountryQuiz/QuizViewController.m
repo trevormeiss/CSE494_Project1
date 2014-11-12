@@ -112,6 +112,10 @@
             [self.question setText:[NSString stringWithFormat:@"What subregion is %@ in?",self.currentCountry.name]];
             [self getFalseAnswers:@"subregion"];
             break;
+        case 5:
+            [self.question setText:[NSString stringWithFormat:@"What region is %@ in?",self.currentCountry.name]];
+            [self getFalseAnswers:@"region"];
+            break;
         default:
             [self.question setText:@"Which country's flag is this?"];
             [self getFalseAnswers:@"flag"];
@@ -137,6 +141,9 @@
     else if([questionType isEqual:@"subregion"]){
         realAnswer = self.currentCountry.subregion;
     }
+    else if([questionType isEqual:@"region"]){
+        realAnswer = self.currentCountry.region;
+    }
     
     //get three false answers
     self.falseAnswers = [[NSMutableArray alloc]init];
@@ -159,6 +166,9 @@
         }
         else if ([questionType isEqual:@"subregion"]){
             answer = country.subregion;
+        }
+        else if ([questionType isEqual:@"region"]){
+            answer = country.region;
         }
         
         if(![self.falseAnswers containsObject:answer] && [answer length] != 0 && ![answer isEqual:realAnswer]){
