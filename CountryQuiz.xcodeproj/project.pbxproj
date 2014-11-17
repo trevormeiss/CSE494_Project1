@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E404F4E1A11AAEB005D78AE /* HighScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E404F4C1A11AAEB005D78AE /* HighScoresViewController.m */; };
 		80B41ACF1A032C5800AB6770 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41ACE1A032C5800AB6770 /* Bolts.framework */; };
 		80B41AD11A032C6600AB6770 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41AD01A032C6600AB6770 /* Parse.framework */; };
 		80B41AD31A032C8300AB6770 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41AD21A032C8300AB6770 /* AudioToolbox.framework */; };
@@ -74,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E404F4B1A11AAEB005D78AE /* HighScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresViewController.h; sourceTree = "<group>"; };
+		3E404F4C1A11AAEB005D78AE /* HighScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresViewController.m; sourceTree = "<group>"; };
 		80B41ACE1A032C5800AB6770 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		80B41AD01A032C6600AB6770 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		80B41AD21A032C8300AB6770 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -237,6 +240,8 @@
 				B50D9E3E19FEF3A500DC67F8 /* MainMenuViewController.h */,
 				B50D9E3F19FEF3A500DC67F8 /* MainMenuViewController.m */,
 				B52AA46619F83AD70069BC08 /* Main.storyboard */,
+				3E404F4B1A11AAEB005D78AE /* HighScoresViewController.h */,
+				3E404F4C1A11AAEB005D78AE /* HighScoresViewController.m */,
 				DCBDA7AD1A018343008AA288 /* InfoViewController.h */,
 				DCBDA7AE1A018343008AA288 /* InfoViewController.m */,
 				DCBDA7AA1A017103008AA288 /* CountryTableViewController.h */,
@@ -463,6 +468,7 @@
 				B52AA56819F84BD60069BC08 /* UNIJsonNode.m in Sources */,
 				B52AA56019F84BD60069BC08 /* Base64.m in Sources */,
 				DCBDA7AF1A018343008AA288 /* InfoViewController.m in Sources */,
+				3E404F4E1A11AAEB005D78AE /* HighScoresViewController.m in Sources */,
 				B52AA46519F83AD70069BC08 /* QuizViewController.m in Sources */,
 				B52AA56419F84BD60069BC08 /* UNIHTTPBinaryResponse.m in Sources */,
 				B52AA56319F84BD60069BC08 /* UNISimpleRequest.m in Sources */,

@@ -14,8 +14,11 @@
 #include <Parse/Parse.h>
 
 #define numQuestions 10
-#define limit1 0.25
-#define limit2 0.60
+//#define limit1 0.25
+//#define limit2 0.60
+
+#define limit1 0.10
+#define limit2 0.10
 
 //@protocol Country <NSObject>
 //@end
@@ -48,6 +51,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 - (IBAction)quitButton:(id)sender;
 
+//parse values
+@property NSString *parseObjectID;
+@property NSString *parseQuizType;
+@property int parseQuizHighScore;
+@property bool addNewItem;
+
 @end
 
 @implementation QuizViewController
@@ -56,13 +65,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.addNewItem = false;
     // Do any additional setup after loading the view, typically from a nib.
     //[self removeCountryFromList];
     
     progressValue = 0.0f;
     self.currentQuestion = 0;
     
+    [self queryParse];
     [self nextQuestion];
 }
 
@@ -93,6 +103,9 @@
     // User chose random quiz
     if (currentQuizType == 5) {
         currentQuizType = arc4random() % 4;
+        
+        //reupdating quiz type if it's random
+        self.quizType = currentQuizType;
     }
     
     switch (currentQuizType) {
@@ -275,12 +288,22 @@
 
 - (void)endQuiz {
     
-    
     PFUser *User = [PFUser currentUser];
     
-    if ([[[PFUser currentUser] objectForKey:@"score"] intValue] < self.score) {
-        User[@"score"] = @(self.score);
-        [User save];
+    if (self.parseQuizHighScore < self.score && self.addNewItem == false){
+        //updating the value of the score following parse docs
+        PFQuery *query = [PFQuery queryWithClassName:@"Scores"];
+        [query whereKey:@"username" equalTo:User.username];
+        // Retrieve the object by id
+        [query getObjectInBackgroundWithId:self.parseObjectID block:^(PFObject *score, NSError *error) {
+            
+            // Now let's update it with some new data. In this case, only cheatMode and score
+            // will get sent to the cloud. playerName hasn't changed.
+            score[@"score"] = [NSNumber numberWithInt:self.score];
+            score[@"quizType"] = self.parseQuizType;
+            [score saveInBackground];
+            
+        }];
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"Congratulations" contentText:[NSString stringWithFormat:@"New high score of %d!", self.score] leftButtonTitle:nil rightButtonTitle:@"Done"];
         [alert show];
         alert.rightBlock = ^() {
@@ -292,7 +315,9 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         };
     }
-    else {
+    //not a new high score
+    else if (self.parseQuizHighScore >= self.score && self.addNewItem == false)
+    {
         DXAlertView *alert = [[DXAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Score: %d", self.score] contentText:@"Not a high score" leftButtonTitle:nil rightButtonTitle:@"Done"];
         [alert show];
         alert.rightBlock = ^() {
@@ -305,7 +330,27 @@
         };
     }
     
-    
+    if (self.addNewItem == true)
+    {
+        PFUser *User = [PFUser currentUser];
+        //if no objects were received from parse add a new one
+        PFObject *parseUser = [PFObject objectWithClassName:@"Scores"];
+        parseUser[@"score"] = [NSNumber numberWithInt:self.score];
+        parseUser[@"quizType"] = [self getQuizTypeString:self.quizType];
+        parseUser[@"username"] = User.username;
+        [parseUser saveInBackground];
+        
+        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"Congratulations" contentText:[NSString stringWithFormat:@"New high score of %d!", self.score] leftButtonTitle:nil rightButtonTitle:@"Done"];
+        [alert show];
+        alert.rightBlock = ^() {
+            //NSLog(@"Button clicked");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        alert.dismissBlock = ^() {
+            //NSLog(@"Do something interesting after dismiss block");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
 }
 
 -(void)increaseProgressValue {
@@ -338,6 +383,64 @@
 
 - (IBAction)quitButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSString *) getQuizTypeString:(int) currentQuizType
+{
+    NSString * quizType;
+    
+    switch (currentQuizType) {
+        case 0:
+            quizType = @"flag";
+            break;
+        case 1:
+            quizType = @"capital";
+            break;
+        case 2:
+            quizType = @"population";
+            break;
+        case 3:
+            quizType = @"subregion";
+            break;
+        default:
+            quizType = @"invalid";
+            break;
+    }
+    
+    return quizType;
+}
+
+-(void) queryParse
+{
+    PFUser *User = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:@"Scores"];
+    //NSLog(@"%@", User.username);
+    [query whereKey:@"username" equalTo:User.username];
+    [query whereKey:@"quizType" equalTo:[self getQuizTypeString:self.quizType]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                //NSLog(@"%@", object.objectId);
+                
+                //getting the values from parse
+                self.parseObjectID = object.objectId;
+                self.parseQuizType = object[@"quizType"];
+                self.parseQuizHighScore = [object[@"score"] intValue];
+            }
+            if (objects.count == 0)
+            {
+                //if no objects were received from parse set flag to add a new one
+                self.addNewItem = true;
+            }
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end
