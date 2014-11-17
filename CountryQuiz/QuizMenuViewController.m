@@ -63,8 +63,13 @@
     [self performSegueWithIdentifier: @"startQuiz" sender:self];
 }
 
-- (IBAction)randomButton:(id)sender {
+- (IBAction)regionButton:(id)sender {
     self.quizType = 4;
+    [self performSegueWithIdentifier: @"startQuiz" sender:self];
+}
+
+- (IBAction)randomButton:(id)sender {
+    self.quizType = 5;
     [self performSegueWithIdentifier: @"startQuiz" sender:self];
 }
 
