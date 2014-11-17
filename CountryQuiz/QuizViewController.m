@@ -72,8 +72,12 @@
 }
 
 -(void)getNewCountry{
-    self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
-    self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
+    
+    do{
+        self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
+        self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
+    }while(self.quizType == 5 && [self.currentCountry.borderingCountryNames count] == 0);
+    
     [self setText];
     [self.imageView setImage:[self.currentCountry getFlag]];
 }
@@ -91,8 +95,8 @@
     int currentQuizType = self.quizType;
     
     // User chose random quiz
-    if (currentQuizType == 5) {
-        currentQuizType = arc4random() % 4;
+    if (currentQuizType == 99) {
+        currentQuizType = arc4random() % 5;
     }
     
     switch (currentQuizType) {
@@ -116,6 +120,10 @@
             [self.question setText:[NSString stringWithFormat:@"What region is %@ in?",self.currentCountry.name]];
             [self getFalseAnswers:@"region"];
             break;
+        case 5:
+            [self.question setText:[NSString stringWithFormat:@"Which country borders %@?",self.currentCountry.name]];
+            [self getFalseAnswers:@"borders"];
+            break;
         default:
             [self.question setText:@"Which country's flag is this?"];
             [self getFalseAnswers:@"flag"];
@@ -124,8 +132,8 @@
 }
 
 -(void)getFalseAnswers:(NSString *)questionType{
-    
     NSString *realAnswer;
+    
     if([questionType  isEqual: @"capital"])
         realAnswer = self.currentCountry.capital;
     else if([questionType  isEqual: @"flag"])
@@ -143,6 +151,11 @@
     }
     else if([questionType isEqual:@"region"]){
         realAnswer = self.currentCountry.region;
+    }
+    else if([questionType isEqual:@"borders"]){
+        //pick random border
+        int randomIndex = arc4random_uniform((int)[self.currentCountry.borderingCountryNames count]);
+        realAnswer = [self.currentCountry.borderingCountryNames objectAtIndex:randomIndex];
     }
     
     //get three false answers
@@ -170,8 +183,14 @@
         else if([questionType isEqual:@"region"]){
             answer = country.region;
         }
+        else if([questionType isEqual:@"borders"]){
+            answer = country.name;
+        }
         
-        if(![self.falseAnswers containsObject:answer] && [answer length] != 0 && ![answer isEqual:realAnswer]){
+        if([questionType isEqual:@"borders"] && ([self.currentCountry.borderingCountryNames containsObject:answer] || [answer isEqual:self.currentCountry.name])){
+            //need to get another answer
+        }
+        else if(![self.falseAnswers containsObject:answer] && [answer length] != 0 && ![answer isEqual:realAnswer]){
             [self.falseAnswers insertObject:answer atIndex:0];
             numOfFalseAnswers++;
         }

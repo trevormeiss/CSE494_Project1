@@ -31,6 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self getAllCountryInfo];
+    [self getBorderingCountries];
     self.score = 0;
     
 }
@@ -117,6 +118,19 @@
      */
     
     //[self.textView setText:json];
+}
+
+-(void)getBorderingCountries{
+    for(Country *country in self.allCountries){
+        for(NSString *code in country.borderingCountries){
+            for(Country *country2 in self.allCountries){
+                if([code isEqual:country2.countryCode3]){
+                    [country.borderingCountryNames insertObject:country2.name atIndex:0];
+                    break;
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - Navigation
