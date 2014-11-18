@@ -15,6 +15,8 @@
 - (IBAction)populationButton:(id)sender;
 - (IBAction)subregionButton:(id)sender;
 - (IBAction)randomButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentOutlet;
+
 @property int quizType;
 @end
 
@@ -39,6 +41,7 @@
     QuizViewController *dest = segue.destinationViewController;
     //dest.allCountries = self.allCountries;
     dest.quizType = self.quizType;
+    dest.difficulty = self.difficultySegmentOutlet.selectedSegmentIndex;
 }
 
 

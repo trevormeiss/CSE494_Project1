@@ -46,6 +46,7 @@
 @property int correct_answer;
 @property int score;
 @property int currentQuestion;
+@property int currentQuestionType;
 @property BOOL answered;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 - (IBAction)quitButton:(id)sender;
@@ -60,7 +61,12 @@
     [super viewDidLoad];
     
     self.allCountries = [[AllCountries sharedCountries] allCountries];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     
+    self.score = 0;
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d",self.score]];
     progressValue = 0.0f;
     self.currentQuestion = 0;
     
@@ -77,7 +83,7 @@
     do{
         self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
         self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
-    }while(self.quizType == 5 && [self.currentCountry.borderingCountryNames count] == 0);
+    }while(self.currentQuestionType == 5 && [self.currentCountry.borderingCountryNames count] == 0);
     
     [self setText];
     [self.imageView setImage:[self.currentCountry getFlag]];
@@ -89,18 +95,18 @@
 
 -(void)removeCountryFromList{
     //I don't know if we should use this or not
-    [self.allCountries removeObjectAtIndex:self.currentCountryIndex];
+    //[self.allCountries removeObjectAtIndex:self.currentCountryIndex];
 }
 
 -(void)getQuestion{
-    NSInteger currentQuizType = self.quizType;
+    self.currentQuestionType = (int)self.quizType;
     
     // User chose random quiz
-    if (currentQuizType == 99) {
-        currentQuizType = arc4random() % 5;
+    if (self.currentQuestionType == 99) {
+        self.currentQuestionType = arc4random() % 6;
     }
     
-    switch (currentQuizType) {
+    switch (self.currentQuestionType) {
         case 0:
             [self.question setText:@"Which country's flag is this?"];
             [self getFalseAnswers:@"flag"];
@@ -332,10 +338,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqual: @"quizResults"]){
         QuizResultsViewController *dest = segue.destinationViewController;
-        
-        //TODO: implement difficulty
-        //dest.difficulty = self.difficulty;
-        
+
+        dest.difficulty = self.difficulty;
         dest.quizType = self.quizType;
         dest.score = self.score;
     }

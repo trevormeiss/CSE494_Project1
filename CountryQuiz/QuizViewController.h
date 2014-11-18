@@ -12,6 +12,7 @@
 @interface QuizViewController : UIViewController
 
 @property NSInteger quizType;
+@property NSInteger difficulty;
 
 @end
 

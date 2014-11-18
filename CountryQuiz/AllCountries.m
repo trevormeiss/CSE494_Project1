@@ -40,8 +40,22 @@
         
         //reverse order of countries
         allCountries = (NSMutableArray *)[[allCountries reverseObjectEnumerator] allObjects];
+        [self getBorderingCountries];
     }
     return self;
+}
+
+-(void)getBorderingCountries{
+    for(Country *country in allCountries){
+        for(NSString *code in country.borderingCountries){
+            for(Country *country2 in allCountries){
+                if([code isEqual:country2.countryCode3]){
+                    [country.borderingCountryNames insertObject:country2.name atIndex:0];
+                    break;
+                }
+            }
+        }
+    }
 }
 
 @end
