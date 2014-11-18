@@ -16,7 +16,7 @@
 
 - (IBAction)LogOutButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-
+@property NSMutableArray *allCountries;
 @end
 
 @implementation MainMenuViewController
@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     //Call this just to load the Countries while the user decides what to do
-    [AllCountries sharedCountries];
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
