@@ -459,8 +459,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRh-OJ-jpb">
-                                <rect key="frame" x="136" y="301" width="49" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRh-OJ-jpb">
+                                <rect key="frame" x="135" y="301" width="49" height="30"/>
                                 <state key="normal" title="Region">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -485,6 +485,7 @@
                             <constraint firstAttribute="centerX" secondItem="WqV-Fj-fam" secondAttribute="centerX" constant="1" id="Fs1-n7-Sju"/>
                             <constraint firstAttribute="centerX" secondItem="frP-YQ-ayE" secondAttribute="centerX" id="OhM-wp-wdM"/>
                             <constraint firstAttribute="centerX" secondItem="y7N-0Q-wja" secondAttribute="centerX" id="PVh-zU-96e"/>
+                            <constraint firstItem="J9s-2O-gmy" firstAttribute="top" secondItem="HRh-OJ-jpb" secondAttribute="bottom" constant="8" id="Une-Ts-P4U"/>
                             <constraint firstAttribute="centerY" secondItem="DLv-ED-obB" secondAttribute="centerY" id="VjM-oi-xeS"/>
                             <constraint firstItem="DLv-ED-obB" firstAttribute="top" secondItem="frP-YQ-ayE" secondAttribute="bottom" constant="8" id="XPR-PW-2TZ"/>
                             <constraint firstAttribute="centerY" secondItem="hrG-yV-rm7" secondAttribute="centerY" constant="126.5" id="XY3-7F-M87"/>

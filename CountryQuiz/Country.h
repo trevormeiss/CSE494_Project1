@@ -23,6 +23,7 @@
 @property NSString *countryCode2;
 @property NSString *countryCode3;
 @property NSArray *borderingCountries;
+@property NSMutableArray *borderingCountryNames;
 @property bool learned;
 -(void)insertInfo:(NSDictionary*)newCountry;
 -(UIImage *)getFlag;
