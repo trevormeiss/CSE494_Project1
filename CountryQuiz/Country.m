@@ -12,7 +12,6 @@
 
 -(void)insertInfo:(NSDictionary*)newCountry{
     
-    
     self.name = [newCountry objectForKey:@"name"];
     self.population = [[newCountry objectForKey:@"population"] intValue];
     //self.index

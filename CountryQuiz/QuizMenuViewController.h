@@ -10,6 +10,4 @@
 
 @interface QuizMenuViewController : UIViewController
 
-@property (nonatomic, retain) NSMutableArray *allCountries;
-
 @end

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Country : NSObject
+
 @property NSString *name;
 @property int population;
 @property int index;

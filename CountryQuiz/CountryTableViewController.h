@@ -10,8 +10,4 @@
 
 @interface CountryTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-
-@property (nonatomic, retain) NSMutableArray *allCountries;
-@property NSIndexPath* selected;
-
 @end

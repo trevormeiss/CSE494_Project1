@@ -7,10 +7,22 @@
 //
 
 #import "InfoViewController.h"
+#import "AllCountries.h"
 #import "Country.h"
 
 @interface InfoViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *popCount;
+@property (weak, nonatomic) IBOutlet UILabel *countryCap;
+@property (weak, nonatomic) IBOutlet UILabel *countryRegion;
+@property (weak, nonatomic) IBOutlet UILabel *countrySubr;
+@property (weak, nonatomic) IBOutlet UIImageView *flagPic;
+@property (weak, nonatomic) IBOutlet UILabel *area;
+
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property NSMutableArray *allCountries;
 @property Country *country;
 
 @end
@@ -19,6 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
     
     self.country = [self.allCountries objectAtIndex:_selectedCountry.row];
     NSString *popString = [NSNumberFormatter localizedStringFromNumber:@(self.country.population)

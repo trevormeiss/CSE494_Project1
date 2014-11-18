@@ -7,38 +7,31 @@
 //
 
 #import "MainMenuViewController.h"
-#import "Country.h"
 #import "QuizMenuViewController.h"
 #import "CountryTableViewController.h" 
+#import "AllCountries.h"
 #import <Parse/Parse.h>
 
 @interface MainMenuViewController ()
 
-@property (nonatomic, retain) NSMutableArray *allCountries;
 - (IBAction)LogOutButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *highScoreLabel;
-@property int score;
-
 
 @end
 
 @implementation MainMenuViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self getAllCountryInfo];
-    self.score = 0;
     
+    //Call this just to load the Countries while the user decides what to do
+    [AllCountries sharedCountries];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
+    //self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
     self.usernameLabel.text = [[PFUser currentUser] username];
 }
 
@@ -79,46 +72,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)getAllCountryInfo{
-    NSString *requestString = @"http://restcountries.eu/rest/v1";
-    NSData *requestData =[NSData dataWithContentsOfURL:[NSURL URLWithString:requestString]];
-    NSError *e = nil;
-    NSArray *countryArray = [NSJSONSerialization JSONObjectWithData:requestData options: NSJSONReadingMutableContainers error: &e];
-    
-    self.allCountries =  [[NSMutableArray alloc] init];
-    
-    for(NSDictionary *countryData in countryArray) {
-        Country *newCountry = [[Country alloc]init];
-        [newCountry insertInfo:countryData];
-        [self.allCountries insertObject:newCountry atIndex:0];
-        //NSLog(@"Item: %@", countryData);
-    }
-    
-    //reverse order of countries
-    self.allCountries = (NSMutableArray *)[[self.allCountries reverseObjectEnumerator] allObjects];
-    
-    
-    //self.rates = (NSDictionary*)json[@"rates"];
-    
-    /*
-     // These code snippets use an open-source library. http://unirest.io/objective-c
-     NSDictionary *headers = @{@"X-Mashape-Key": @"a89uqNyKzQmshpFeEquDwXGyR31sp1W7ZaDjsnRjWbp3vGniR2"};
-     UNIUrlConnection *asyncConnection = [[UNIRest get:^(UNISimpleRequest *request) {
-     [request setUrl:@"https://restcountries-v1.p.mashape.com/all"];
-     [request setHeaders:headers];
-     }] asJsonAsync:^(UNIHTTPJsonResponse *response, NSError *error) {
-     NSInteger code = response.code;
-     NSDictionary *responseHeaders = response.headers;
-     UNIJsonNode *body = response.body;
-     NSData *rawBody = response.rawBody;
-     NSDictionary *currencyResult = [NSJSONSerialization JSONObjectWithData:[response rawBody] options: 0 error: &error];
-     NSLog(@"%@", currencyResult);
-     }];
-     */
-    
-    //[self.textView setText:json];
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -126,14 +79,15 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqual: @"quiz"]){
-        QuizMenuViewController *dest = segue.destinationViewController;
-        dest.allCountries = self.allCountries;
-    }
-    if([segue.identifier isEqual: @"learn"]){
-        CountryTableViewController *dest = segue.destinationViewController;
-        dest.allCountries = self.allCountries;
         //QuizMenuViewController *dest = segue.destinationViewController;
         //dest.allCountries = self.allCountries;
+    }
+    else if([segue.identifier isEqual: @"learn"]){
+        //CountryTableViewController *dest = segue.destinationViewController;
+        //dest.allCountries = self.allCountries;
+    }
+    else if([segue.identifier isEqual: @"highScore"]){
+        
     }
 }
 
@@ -157,7 +111,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     
-    self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
+    //self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
     self.usernameLabel.text = [[PFUser currentUser] username];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -202,7 +156,7 @@
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     //Sign up user with highScore of 0
     
-    user[@"score"] = @(self.score);
+    //user[@"score"] = @(self.score);
     [user save];
     
     [self dismissViewControllerAnimated:YES completion:Nil]; // Dismiss the PFSignUpViewController

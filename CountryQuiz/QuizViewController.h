@@ -11,7 +11,7 @@
 
 @interface QuizViewController : UIViewController
 
-@property (nonatomic, retain) NSMutableArray *allCountries;
-@property int quizType;
+@property NSInteger quizType;
+
 @end
 

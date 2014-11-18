@@ -7,11 +7,11 @@
 //
 
 #import "QuizViewController.h"
+#import "AllCountries.h"
 #import "UNIRest.h"
 #import "QuizMenuViewController.h"
-#import "DXAlertView.h"
+#import "QuizResultsViewController.h"
 #include <stdlib.h>
-#include <Parse/Parse.h>
 
 #define numQuestions 10
 #define limit1 0.25
@@ -20,6 +20,8 @@
 //@protocol Country <NSObject>
 //@end
 @interface QuizViewController ()
+
+@property NSMutableArray *allCountries;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property int currentCountryIndex;
@@ -57,8 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
-    //[self removeCountryFromList];
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
     
     progressValue = 0.0f;
     self.currentQuestion = 0;
@@ -88,7 +89,7 @@
 }
 
 -(void)getQuestion{
-    int currentQuizType = self.quizType;
+    NSInteger currentQuizType = self.quizType;
     
     // User chose random quiz
     if (currentQuizType == 5) {
@@ -274,38 +275,7 @@
 }
 
 - (void)endQuiz {
-    
-    
-    PFUser *User = [PFUser currentUser];
-    
-    if ([[[PFUser currentUser] objectForKey:@"score"] intValue] < self.score) {
-        User[@"score"] = @(self.score);
-        [User save];
-        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:@"Congratulations" contentText:[NSString stringWithFormat:@"New high score of %d!", self.score] leftButtonTitle:nil rightButtonTitle:@"Done"];
-        [alert show];
-        alert.rightBlock = ^() {
-            //NSLog(@"Button clicked");
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-        alert.dismissBlock = ^() {
-            //NSLog(@"Do something interesting after dismiss block");
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-    }
-    else {
-        DXAlertView *alert = [[DXAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Score: %d", self.score] contentText:@"Not a high score" leftButtonTitle:nil rightButtonTitle:@"Done"];
-        [alert show];
-        alert.rightBlock = ^() {
-            //NSLog(@"Button clicked");
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-        alert.dismissBlock = ^() {
-            //NSLog(@"Do something interesting after dismiss block");
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-    }
-    
-    
+    [self performSegueWithIdentifier:@"quizResults" sender:self];
 }
 
 -(void)increaseProgressValue {
@@ -338,6 +308,18 @@
 
 - (IBAction)quitButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqual: @"quizResults"]){
+        QuizResultsViewController *dest = segue.destinationViewController;
+        
+        //TODO: implement difficulty
+        //dest.difficulty = self.difficulty;
+        
+        dest.quizType = self.quizType;
+        dest.score = self.score;
+    }
 }
 
 @end

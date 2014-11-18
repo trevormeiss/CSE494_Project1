@@ -7,33 +7,31 @@
 //
 
 #import "CountryTableViewController.h"
+#import "AllCountries.h"
 #import "Country.h"
 #import "InfoViewController.h"
 
 @interface CountryTableViewController ()
+
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
+@property NSIndexPath* selected;
+@property NSMutableArray *allCountries;
+
 @end
+
 
 @implementation CountryTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 #pragma mark - Table view data source
@@ -48,12 +46,11 @@
 {
     // this method is more complicated with multiple sections
     return self.allCountries.count;
-    
 }
 
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     //cell.imageView.image = self.constellationImages[indexPath.row]; // a UIImage
     Country *country = [self.allCountries objectAtIndex:indexPath.row];
@@ -69,23 +66,19 @@
         cell.backgroundColor = [UIColor whiteColor];
 }
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     _selected = [tableView indexPathForSelectedRow];
     [self performSegueWithIdentifier:@"countryToInfo" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Make sure your segue name in storyboard is the same as this line
     if ([[segue identifier] isEqualToString:@"countryToInfo"])
     {
         InfoViewController *dest = segue.destinationViewController;
-        dest.allCountries = self.allCountries;
-        dest.selectedCountry = _selected;
+        //dest.allCountries = self.allCountries;
+        dest.selectedCountry = self.selected;
     }
 }
 

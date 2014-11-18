@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -10,7 +10,7 @@
         <!--Country Quiz-->
         <scene sceneID="PRy-j8-8c3">
             <objects>
-                <viewController id="Blr-Dy-fK8" customClass="MainMenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenuViewController" id="Blr-Dy-fK8" customClass="MainMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OWf-rE-rtL"/>
                         <viewControllerLayoutGuide type="bottom" id="1ca-hj-GOf"/>
@@ -28,12 +28,6 @@
                                     <segue destination="xML-rR-gMb" kind="push" identifier="quiz" id="4n9-La-q5I"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a0-Dg-qQv">
-                                <rect key="frame" x="113" y="394" width="94" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CountryQuiz_isolated.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-w3-Cc2">
                                 <rect key="frame" x="38" y="77" width="244" height="163"/>
                                 <constraints>
@@ -55,7 +49,7 @@
                                     <action selector="LogOutButton:" destination="Blr-Dy-fK8" eventType="touchUpInside" id="LkS-tF-Tkd"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m95-VH-b15">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m95-VH-b15">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -69,29 +63,37 @@
                                     <segue destination="XJr-zH-7tj" kind="push" identifier="learn" id="Dcq-8q-4xP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBM-Jn-wKC">
+                                <rect key="frame" x="118" y="382" width="84" height="30"/>
+                                <state key="normal" title="High Scores">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Kqv-u9-mOJ" kind="modal" identifier="highScore" id="Agd-zt-lD5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="CPh-km-C0I" secondAttribute="centerX" id="6ug-uk-cmP"/>
                             <constraint firstAttribute="centerX" secondItem="Jm6-gy-3FD" secondAttribute="centerX" id="8gX-pL-L5k"/>
+                            <constraint firstAttribute="centerX" secondItem="eBM-Jn-wKC" secondAttribute="centerX" id="Awh-T4-oU4"/>
                             <constraint firstAttribute="centerY" secondItem="m95-VH-b15" secondAttribute="centerY" constant="0.5" id="C1T-Vs-bYu"/>
-                            <constraint firstItem="CPh-km-C0I" firstAttribute="top" secondItem="5a0-Dg-qQv" secondAttribute="bottom" constant="8" id="UjV-lx-Nc4"/>
                             <constraint firstAttribute="centerX" secondItem="XWC-NS-MJn" secondAttribute="centerX" id="UxH-LX-Xin"/>
                             <constraint firstAttribute="centerX" secondItem="MoG-w3-Cc2" secondAttribute="centerX" id="X3g-xL-Bno"/>
+                            <constraint firstItem="CPh-km-C0I" firstAttribute="top" secondItem="eBM-Jn-wKC" secondAttribute="bottom" constant="8" id="Xl6-zl-WwD"/>
                             <constraint firstAttribute="centerX" secondItem="m95-VH-b15" secondAttribute="centerX" id="Xtg-JK-1X9"/>
+                            <constraint firstItem="eBM-Jn-wKC" firstAttribute="top" secondItem="XWC-NS-MJn" secondAttribute="bottom" constant="10" id="Xxj-hm-tCM"/>
                             <constraint firstItem="TAf-8u-Xn8" firstAttribute="top" secondItem="MoG-w3-Cc2" secondAttribute="bottom" constant="16" id="cpP-CF-eug"/>
                             <constraint firstItem="MoG-w3-Cc2" firstAttribute="top" secondItem="OWf-rE-rtL" secondAttribute="bottom" constant="13" id="fpa-q0-Rv0"/>
                             <constraint firstItem="m95-VH-b15" firstAttribute="top" secondItem="MoG-w3-Cc2" secondAttribute="bottom" id="fsa-km-IxN"/>
-                            <constraint firstItem="5a0-Dg-qQv" firstAttribute="top" secondItem="XWC-NS-MJn" secondAttribute="bottom" constant="22" id="gi7-7q-goT"/>
                             <constraint firstAttribute="centerX" secondItem="TAf-8u-Xn8" secondAttribute="centerX" id="jYL-0b-WvJ"/>
-                            <constraint firstAttribute="centerX" secondItem="5a0-Dg-qQv" secondAttribute="centerX" id="mRJ-uE-f0d"/>
                             <constraint firstItem="1ca-hj-GOf" firstAttribute="top" secondItem="CPh-km-C0I" secondAttribute="bottom" constant="30" id="mbd-md-fJA"/>
                             <constraint firstItem="Jm6-gy-3FD" firstAttribute="top" secondItem="TAf-8u-Xn8" secondAttribute="bottom" constant="10" id="vQY-nw-rRR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Country Quiz" id="qnF-7K-SIu"/>
                     <connections>
-                        <outlet property="highScoreLabel" destination="5a0-Dg-qQv" id="9CY-Xk-lKA"/>
                         <outlet property="usernameLabel" destination="XWC-NS-MJn" id="OfV-jQ-2jF"/>
                     </connections>
                 </viewController>
@@ -102,7 +104,7 @@
         <!--Navigation Controller-->
         <scene sceneID="c9K-N9-Zls">
             <objects>
-                <navigationController id="Hqo-AU-d9a" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" id="Hqo-AU-d9a" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sMT-Q3-PCa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -299,6 +301,110 @@
             </objects>
             <point key="canvasLocation" x="1124" y="-242"/>
         </scene>
+        <!--High Scores-->
+        <scene sceneID="zcz-hY-Ses">
+            <objects>
+                <viewController title="High Scores" id="Kqv-u9-mOJ" customClass="HighScoreViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XyP-yL-3pp"/>
+                        <viewControllerLayoutGuide type="bottom" id="4X9-iA-CLn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k87-es-zvf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TC-71-Nea">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="High Scores" id="VbC-jM-YUp">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="k0H-sx-uFg">
+                                            <connections>
+                                                <action selector="backButton:" destination="Kqv-u9-mOJ" id="9sN-bn-G19"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOc-pX-t0e">
+                                <rect key="frame" x="127" y="72" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FxG-mg-tG6">
+                                <rect key="frame" x="16" y="93" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Easy"/>
+                                    <segment title="Medium"/>
+                                    <segment title="Hard"/>
+                                </segments>
+                                <connections>
+                                    <action selector="difficultyControl:" destination="Kqv-u9-mOJ" eventType="valueChanged" id="MTq-tJ-Qby"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxq-S6-OYj">
+                                <rect key="frame" x="122" y="129" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gJY-s0-MSb">
+                                <rect key="frame" x="16" y="150" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Flags"/>
+                                    <segment title="Capitals"/>
+                                    <segment title="Population"/>
+                                    <segment title="Subregion"/>
+                                </segments>
+                                <connections>
+                                    <action selector="quizTypeControl1:" destination="Kqv-u9-mOJ" eventType="valueChanged" id="yAR-Vb-v0B"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="fbH-bk-fl7">
+                                <rect key="frame" x="16" y="178" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Region"/>
+                                    <segment title="Bordering Countries"/>
+                                    <segment title="Random"/>
+                                </segments>
+                                <connections>
+                                    <action selector="quizTypeControl2:" destination="Kqv-u9-mOJ" eventType="valueChanged" id="NOf-ln-n2M"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FxG-mg-tG6" firstAttribute="leading" secondItem="k87-es-zvf" secondAttribute="leadingMargin" id="AAV-HZ-Qpl"/>
+                            <constraint firstItem="FxG-mg-tG6" firstAttribute="trailing" secondItem="k87-es-zvf" secondAttribute="trailingMargin" id="Cas-Po-wxd"/>
+                            <constraint firstItem="8TC-71-Nea" firstAttribute="leading" secondItem="k87-es-zvf" secondAttribute="leadingMargin" constant="-16" id="Fe2-82-aLK"/>
+                            <constraint firstItem="FxG-mg-tG6" firstAttribute="top" secondItem="uOc-pX-t0e" secondAttribute="bottom" id="G81-er-ka7"/>
+                            <constraint firstItem="Uxq-S6-OYj" firstAttribute="top" secondItem="FxG-mg-tG6" secondAttribute="bottom" constant="8" id="H1y-U5-H81"/>
+                            <constraint firstItem="fbH-bk-fl7" firstAttribute="trailing" secondItem="k87-es-zvf" secondAttribute="trailingMargin" id="Mrd-g3-ewn"/>
+                            <constraint firstAttribute="centerX" secondItem="Uxq-S6-OYj" secondAttribute="centerX" id="TnA-Rb-qae"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8TC-71-Nea" secondAttribute="trailing" constant="-16" id="lqS-FC-UuF"/>
+                            <constraint firstItem="fbH-bk-fl7" firstAttribute="leading" secondItem="k87-es-zvf" secondAttribute="leadingMargin" id="oNu-j2-jAk"/>
+                            <constraint firstItem="fbH-bk-fl7" firstAttribute="top" secondItem="gJY-s0-MSb" secondAttribute="bottom" id="oRN-gS-sg9"/>
+                            <constraint firstItem="uOc-pX-t0e" firstAttribute="top" secondItem="XyP-yL-3pp" secondAttribute="bottom" constant="52" id="oaK-Um-yYg"/>
+                            <constraint firstItem="gJY-s0-MSb" firstAttribute="top" secondItem="Uxq-S6-OYj" secondAttribute="bottom" id="qQn-77-Hny"/>
+                            <constraint firstAttribute="centerX" secondItem="uOc-pX-t0e" secondAttribute="centerX" id="tUD-X9-hnu"/>
+                            <constraint firstItem="gJY-s0-MSb" firstAttribute="trailing" secondItem="k87-es-zvf" secondAttribute="trailingMargin" id="u5a-Mm-YXJ"/>
+                            <constraint firstItem="8TC-71-Nea" firstAttribute="top" secondItem="XyP-yL-3pp" secondAttribute="bottom" id="wRo-Do-Ok5"/>
+                            <constraint firstItem="gJY-s0-MSb" firstAttribute="leading" secondItem="k87-es-zvf" secondAttribute="leadingMargin" id="zao-wO-CDe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="High Scores" id="dg7-vM-WP5">
+                        <barButtonItem key="backBarButtonItem" title="Main Menu" id="aPi-O8-RcL"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="difficultyControlOutlet" destination="FxG-mg-tG6" id="FUf-f7-rIY"/>
+                        <outlet property="quizTypeControlOutlet1" destination="gJY-s0-MSb" id="B3N-nh-CT5"/>
+                        <outlet property="quizTypeControlOutlet2" destination="fbH-bk-fl7" id="ozj-eC-69e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jiv-0X-8U9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="187" y="997"/>
+        </scene>
         <!--Quiz Menu-->
         <scene sceneID="QEc-XB-cNe">
             <objects>
@@ -362,7 +468,7 @@
                                     <action selector="regionButton:" destination="xML-rR-gMb" eventType="touchUpInside" id="Yjq-E8-dgH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqV-Fj-fam">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqV-Fj-fam">
                                 <rect key="frame" x="130" y="339" width="58" height="30"/>
                                 <state key="normal" title="Random">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,16 +480,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="WqV-Fj-fam" secondAttribute="centerY" constant="-76" id="1Dp-gU-vQr"/>
+                            <constraint firstAttribute="centerY" secondItem="WqV-Fj-fam" secondAttribute="centerY" constant="-114" id="1Dp-gU-vQr"/>
                             <constraint firstItem="y7N-0Q-wja" firstAttribute="top" secondItem="hrG-yV-rm7" secondAttribute="bottom" constant="25" id="1ta-vs-blM"/>
-                            <constraint firstAttribute="centerX" secondItem="WqV-Fj-fam" secondAttribute="centerX" id="Fs1-n7-Sju"/>
+                            <constraint firstAttribute="centerX" secondItem="WqV-Fj-fam" secondAttribute="centerX" constant="1" id="Fs1-n7-Sju"/>
                             <constraint firstAttribute="centerX" secondItem="frP-YQ-ayE" secondAttribute="centerX" id="OhM-wp-wdM"/>
                             <constraint firstAttribute="centerX" secondItem="y7N-0Q-wja" secondAttribute="centerX" id="PVh-zU-96e"/>
                             <constraint firstAttribute="centerY" secondItem="DLv-ED-obB" secondAttribute="centerY" id="VjM-oi-xeS"/>
                             <constraint firstItem="DLv-ED-obB" firstAttribute="top" secondItem="frP-YQ-ayE" secondAttribute="bottom" constant="8" id="XPR-PW-2TZ"/>
                             <constraint firstAttribute="centerY" secondItem="hrG-yV-rm7" secondAttribute="centerY" constant="126.5" id="XY3-7F-M87"/>
                             <constraint firstAttribute="centerX" secondItem="hrG-yV-rm7" secondAttribute="centerX" id="Z4l-de-uB8"/>
-                            <constraint firstItem="WqV-Fj-fam" firstAttribute="top" secondItem="UVf-mX-VQl" secondAttribute="bottom" constant="8" id="b1h-W6-sd2"/>
+                            <constraint firstItem="WqV-Fj-fam" firstAttribute="top" secondItem="UVf-mX-VQl" secondAttribute="bottom" constant="46" id="b1h-W6-sd2"/>
                             <constraint firstItem="frP-YQ-ayE" firstAttribute="top" secondItem="y7N-0Q-wja" secondAttribute="bottom" constant="8" id="bUV-ca-5bo"/>
                             <constraint firstAttribute="centerX" secondItem="UVf-mX-VQl" secondAttribute="centerX" id="dHq-CK-9ok"/>
                             <constraint firstAttribute="centerY" secondItem="frP-YQ-ayE" secondAttribute="centerY" constant="38" id="eX2-BP-oHf"/>
@@ -524,11 +630,80 @@
                         <outlet property="qCountLabel" destination="QGP-EE-6vs" id="PUE-dL-ZLq"/>
                         <outlet property="question" destination="PLl-Sa-W2V" id="ekm-8G-W7M"/>
                         <outlet property="scoreLabel" destination="jpG-xH-Wzr" id="Dpf-XY-aHE"/>
+                        <segue destination="7dV-Q2-zRO" kind="modal" identifier="quizResults" id="7FC-e5-ccl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1124" y="380"/>
+        </scene>
+        <!--Quiz Results View Controller-->
+        <scene sceneID="WQC-iZ-Gio">
+            <objects>
+                <viewController id="7dV-Q2-zRO" customClass="QuizResultsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iFN-s4-ja5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tko-Vt-7cb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uai-iU-TFy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lf-Kj-o5y">
+                                <rect key="frame" x="16" y="100" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaP-H4-bIG">
+                                <rect key="frame" x="118" y="430" width="84" height="30"/>
+                                <state key="normal" title="High Scores">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Kqv-u9-mOJ" kind="modal" identifier="highScore" id="Fz4-iE-PsA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New High Score!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGL-Bn-dPc">
+                                <rect key="frame" x="16" y="142" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ny3-Pd-A0V">
+                                <rect key="frame" x="99" y="206" width="122" height="30"/>
+                                <state key="normal" title="Post to Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr9-at-VEg">
+                                <rect key="frame" x="128" y="267" width="64" height="30"/>
+                                <state key="normal" title="Try Again">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjJ-NY-omA">
+                                <rect key="frame" x="109" y="305" width="103" height="30"/>
+                                <state key="normal" title="New Quiz Type">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ah-YG-UQl">
+                                <rect key="frame" x="122" y="343" width="77" height="30"/>
+                                <state key="normal" title="Main Menu">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mainMenuButton:" destination="7dV-Q2-zRO" eventType="touchUpInside" id="L8C-Wy-1W5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tff-Q7-Dk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="380"/>
         </scene>
     </scenes>
     <resources>
@@ -539,4 +714,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Agd-zt-lD5"/>
+    </inferredMetricsTieBreakers>
 </document>
