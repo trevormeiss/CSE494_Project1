@@ -36,6 +36,7 @@
     self.countryCode3 = [newCountry objectForKey:@"alpha3Code"];
     self.borderingCountries = [newCountry objectForKey:@"borders"];
     self.borderingCountryNames = [[NSMutableArray alloc] init];
+    self.borderingCountryObjects = [[NSMutableArray alloc] init];
     self.learned=false;
 }
 

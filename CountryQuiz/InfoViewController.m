@@ -21,9 +21,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *area;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISwitch *learnedSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *learnedLabel;
+@property NSIndexPath* selected;
 
 @property NSMutableArray *allCountries;
 @property Country *country;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -46,6 +50,9 @@
     self.countrySubr.text = self.country.subregion;
     self.popCount.text = popString;
     self.area.text = areaString;
+    
+    //self.bordersLabel.text = [self.country.borderingCountryNames componentsJoinedByString:@", "];
+    
     [self.flagPic setImage:[self.country getFlag]];
     [self getMap];
 }
@@ -66,6 +73,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)learned:(id)sender {
+    if(self.learnedSwitch.on){
+        self.country.learned = true;
+        self.learnedLabel.text = @"Learned!";
+    }
+    else{
+        self.country.learned = false;
+        self.learnedLabel.text = @"Not learned";
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -76,5 +93,41 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // this method is more complicated with multiple sections
+    return [self.country.borderingCountryObjects count];
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    //cell.imageView.image = self.constellationImages[indexPath.row]; // a UIImage
+    Country *country = [self.country.borderingCountryObjects objectAtIndex:indexPath.row];
+    cell.textLabel.text = country.name; // the title
+    // cell.detailTextLabel.text = self.constellationDetail[indexPath.row]; // the subtitle
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row % 2 == 0)
+        cell.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.1];
+    else
+        cell.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //_selected = [tableView indexPathForSelectedRow];
+    //[self performSegueWithIdentifier:@"countryToInfo" sender:self];
+}
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface InfoViewController : UIViewController
+@interface InfoViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property NSIndexPath *selectedCountry;
 
