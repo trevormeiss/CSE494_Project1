@@ -46,6 +46,7 @@
     self.countrySubr.text = self.country.subregion;
     self.popCount.text = popString;
     self.area.text = areaString;
+    self.flagPic.contentMode = UIViewContentModeScaleAspectFit;
     [self.flagPic setImage:[self.country getFlag]];
     [self getMap];
 }

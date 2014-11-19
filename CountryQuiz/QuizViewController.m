@@ -86,6 +86,7 @@
     }while(self.currentQuestionType == 5 && [self.currentCountry.borderingCountryNames count] == 0);
     
     [self setText];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.imageView setImage:[self.currentCountry getFlag]];
 }
 
