@@ -58,14 +58,14 @@
 
 - (IBAction)postToFacebook:(id)sender {
     SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [controller setInitialText:@"First post from my iPhone app"];
+    [controller setInitialText: [NSString stringWithFormat:@"I just got a score of %ld on the %@ quiz on the CountryQuiz iOS app!", (long)self.score, self.quizTypeLabel.text]];
     [self presentViewController:controller animated:YES completion:Nil];
     
 }
 
 - (IBAction)postToTwitter:(id)sender {
     SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [tweetSheet setInitialText:@"Great fun to learn iOS programming at appcoda.com!"];
+    [tweetSheet setInitialText: [NSString stringWithFormat:@"I just got a score of %ld on the %@ quiz on the CountryQuiz iOS app!", (long)self.score, self.quizTypeLabel.text]];
     [self presentViewController:tweetSheet animated:YES completion:nil];
 }
 
