@@ -10,6 +10,7 @@
 #import "HighScoreViewController.h"
 #import "MainMenuViewController.h"
 #import <Parse/Parse.h>
+#import <Social/Social.h>
 
 @interface QuizResultsViewController ()
 - (IBAction)mainMenuButton:(id)sender;
@@ -53,6 +54,19 @@
 - (void)checkForHighScore {
     //TODO: implement a way to save score based on difficulty and quiz type
     //Update highScoreLabel
+}
+
+- (IBAction)postToFacebook:(id)sender {
+    SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [controller setInitialText:@"First post from my iPhone app"];
+    [self presentViewController:controller animated:YES completion:Nil];
+    
+}
+
+- (IBAction)postToTwitter:(id)sender {
+    SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [tweetSheet setInitialText:@"Great fun to learn iOS programming at appcoda.com!"];
+    [self presentViewController:tweetSheet animated:YES completion:nil];
 }
 
 - (void)setLabels {
