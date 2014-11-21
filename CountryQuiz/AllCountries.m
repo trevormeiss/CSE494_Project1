@@ -50,6 +50,7 @@
         for(NSString *code in country.borderingCountries){
             for(Country *country2 in allCountries){
                 if([code isEqual:country2.countryCode3]){
+                    [country.borderingCountryObjects insertObject:country2  atIndex:0];
                     [country.borderingCountryNames insertObject:country2.name atIndex:0];
                     break;
                 }
