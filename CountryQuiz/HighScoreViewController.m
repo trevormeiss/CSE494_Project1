@@ -147,6 +147,12 @@
             [[self.scoreArray objectAtIndex:count] setHidden:NO];
             [[self.scoreArray objectAtIndex:count] setText:[found objectForKey:@"score"]];
             
+            // Make the text bold for current user scores
+            if ([[found objectForKey:@"playerName"] isEqual:[[PFUser currentUser] username]]) {
+                [[self.usernameArray objectAtIndex:count] setFont:[UIFont boldSystemFontOfSize:14.0f]];
+                [[self.scoreArray objectAtIndex:count] setFont:[UIFont boldSystemFontOfSize:14.0f]];
+            }
+            
             count++;
         }
     }
