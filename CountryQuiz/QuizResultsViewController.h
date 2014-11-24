@@ -13,5 +13,6 @@
 @property NSInteger difficulty;
 @property NSInteger quizType;
 @property NSInteger score;
+@property NSInteger quizMeOn;
 
 @end

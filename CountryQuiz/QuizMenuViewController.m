@@ -16,6 +16,7 @@
 - (IBAction)subregionButton:(id)sender;
 - (IBAction)randomButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentOutlet;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *quizMeOnSegment;
 
 @property int quizType;
 @end
@@ -42,8 +43,8 @@
     //dest.allCountries = self.allCountries;
     dest.quizType = self.quizType;
     dest.difficulty = self.difficultySegmentOutlet.selectedSegmentIndex;
+    dest.quizMeOn = self.quizMeOnSegment.selectedSegmentIndex;
 }
-
 
 - (IBAction)flagButton:(id)sender {
     self.quizType = 0;

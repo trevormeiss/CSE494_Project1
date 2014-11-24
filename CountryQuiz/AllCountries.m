@@ -68,7 +68,7 @@
     
     for (PFObject *row in [query findObjects]) {
         NSString *countryName = row[@"countryName"];
-        bool learned = row[@"learned"];
+        bool learned = [row[@"learned"] boolValue];
         [learnedInfo setObject:@(learned) forKey:countryName];
     }
     
