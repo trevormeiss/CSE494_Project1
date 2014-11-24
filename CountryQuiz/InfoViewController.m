@@ -71,6 +71,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)learned:(id)sender {
     if(self.learnedSwitch.on){
         self.country.learned = true;
@@ -110,6 +111,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     //cell.imageView.image = self.constellationImages[indexPath.row]; // a UIImage
     Country *country = [self.country.borderingCountryObjects objectAtIndex:indexPath.row];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:13]];
     cell.textLabel.text = country.name; // the title
     // cell.detailTextLabel.text = self.constellationDetail[indexPath.row]; // the subtitle
     return cell;
