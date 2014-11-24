@@ -102,12 +102,27 @@
     NSString *countryName = countryToSave.name;
     bool learned = countryToSave.learned;
     
-    PFObject *row = [PFObject objectWithClassName:@"UserLearned"];
-    [row setObject:countryName forKey:@"countryName"];
-    [row setObject:@(learned) forKey:@"learned"];
-    [row setObject:[[PFUser currentUser] username] forKey:@"user"];
-    //commit the new object to the parse database
-    [row saveInBackground];
+    PFQuery *query = [PFQuery queryWithClassName:@"UserLearned"];
+    [query whereKey:@"user" equalTo:[[PFUser currentUser] username]];
+    [query whereKey:@"countryName" equalTo:countryName];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * row, NSError *error) {
+        if (!error) {
+            // Found UserStats
+            [row setObject:@(learned) forKey:@"learned"];
+            
+            // Save
+            [row saveInBackground];
+        } else {
+            // Did not find any stats on the country for the current user
+            //NSLog(@"Error: %@", error);
+            PFObject *row = [PFObject objectWithClassName:@"UserLearned"];
+            [row setObject:countryName forKey:@"countryName"];
+            [row setObject:@(learned) forKey:@"learned"];
+            [row setObject:[[PFUser currentUser] username] forKey:@"user"];
+            //commit the new object to the parse database
+            [row save];
+        }
+    }];
 }
 
 /*
