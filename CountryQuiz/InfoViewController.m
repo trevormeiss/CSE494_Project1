@@ -107,7 +107,7 @@
     [row setObject:@(learned) forKey:@"learned"];
     [row setObject:[[PFUser currentUser] username] forKey:@"user"];
     //commit the new object to the parse database
-    [row save];
+    [row saveInBackground];
 }
 
 /*

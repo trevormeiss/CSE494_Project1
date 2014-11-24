@@ -53,15 +53,24 @@
 
 - (void)checkForHighScore {
     
-    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-    gameScore[@"score"] = [NSString stringWithFormat:@"%ld", (long)self.score];
-    gameScore[@"playerName"] = [[PFUser currentUser] username];
-    gameScore[@"difficulty"] = [self stringFromDifficulty:self.difficulty];
-    gameScore[@"quizType"] = [self stringFromQuizType:self.quizType];
-    [gameScore saveInBackground];
-    
-    //TODO: implement a way to save score based on difficulty and quiz type
-    //Update highScoreLabel
+    PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
+    [query whereKey:@"playerName" equalTo:[[PFUser currentUser] username]];
+    [query whereKey:@"difficulty" equalTo:[self stringFromDifficulty:self.difficulty]];
+    [query whereKey:@"quizType" equalTo:[self stringFromQuizType:self.quizType]];
+    [query whereKey:@"score" greaterThan:[NSString stringWithFormat:@"%ld", (long)self.score]];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            self.highScoreLabel.text = @"New High Score!";
+            PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+            gameScore[@"score"] = [NSString stringWithFormat:@"%ld", (long)self.score];
+            gameScore[@"playerName"] = [[PFUser currentUser] username];
+            gameScore[@"difficulty"] = [self stringFromDifficulty:self.difficulty];
+            gameScore[@"quizType"] = [self stringFromQuizType:self.quizType];
+            [gameScore saveInBackground];
+        } else {
+            self.highScoreLabel.text = @"Not a High Score";
+        }
+    }];
 }
 
 - (IBAction)postToFacebook:(id)sender {
@@ -78,7 +87,6 @@
 }
 
 - (void)setLabels {
-
     self.difficultyLabel.text = [NSString stringWithFormat:@"Difficulty: %@", [self stringFromDifficulty:self.difficulty]];
     self.quizTypeLabel.text = [NSString stringWithFormat:@"%@", [self stringFromQuizType:self.quizType]];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.score];
