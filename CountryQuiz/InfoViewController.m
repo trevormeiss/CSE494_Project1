@@ -53,6 +53,7 @@
     self.flagPic.contentMode = UIViewContentModeScaleAspectFit;
     [self.flagPic setImage:[self.country getFlag]];
     [self getMap];
+    [self setLearnedSwitch];
 }
 
 -(void)getMap{
@@ -81,6 +82,32 @@
         self.country.learned = false;
         self.learnedLabel.text = @"Not learned";
     }
+    [self saveUserLearnedInfo:self.country];
+}
+
+-(void)setLearnedSwitch{
+    if(self.country.learned){
+        self.learnedSwitch.on = true;
+        self.learnedLabel.text = @"Learned!";
+    }
+    else{
+        self.learnedSwitch.on = false;
+        self.learnedLabel.text = @"Not learned";
+    }
+}
+
+-(void)saveUserLearnedInfo:(Country *)countryToSave{
+    //Save total to Parse
+    
+    NSString *countryName = countryToSave.name;
+    bool learned = countryToSave.learned;
+    
+    PFObject *row = [PFObject objectWithClassName:@"UserLearned"];
+    [row setObject:countryName forKey:@"countryName"];
+    [row setObject:@(learned) forKey:@"learned"];
+    [row setObject:[[PFUser currentUser] username] forKey:@"user"];
+    //commit the new object to the parse database
+    [row save];
 }
 
 /*
