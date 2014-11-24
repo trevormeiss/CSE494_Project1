@@ -41,6 +41,7 @@
         //reverse order of countries
         allCountries = (NSMutableArray *)[[allCountries reverseObjectEnumerator] allObjects];
         [self getBorderingCountries];
+        [self loadUserLearnedInfo];
     }
     return self;
 }
@@ -58,6 +59,43 @@
         }
     }
 }
+
+-(void)loadUserLearnedInfo{
+    PFQuery *query = [PFQuery queryWithClassName:@"UserLearned"];
+    [query whereKey:@"user" equalTo:[[PFUser currentUser] username]];
+    
+    NSMutableDictionary *learnedInfo = [[NSMutableDictionary alloc] init];
+    
+    for (PFObject *row in [query findObjects]) {
+        NSString *countryName = row[@"countryName"];
+        bool learned = row[@"learned"];
+        [learnedInfo setObject:@(learned) forKey:countryName];
+    }
+    
+    for(Country *country in allCountries){
+        NSString *countryName = country.name;
+        country.learned = [learnedInfo[countryName] boolValue];
+    }
+}
+
+/*
+-(void)saveUserLearnedInfo{
+    //Save total to Parse
+    
+    for(Country *country in allCountries){
+        NSString *countryName = country.name;
+        bool learned = country.learned;
+        
+        PFObject *row = [PFObject objectWithClassName:@"UserLearned"];
+        [row setObject:countryName forKey:@"countryName"];
+        [row setObject:@(learned) forKey:@"learned"];
+        [row setObject:[[PFUser currentUser] username] forKey:@"user"];
+        //commit the new object to the parse database
+        [row save];
+    }
+}
+*/
+
 
 @end
 
