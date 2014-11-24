@@ -52,6 +52,14 @@
 }
 
 - (void)checkForHighScore {
+    
+    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+    gameScore[@"score"] = [NSString stringWithFormat:@"%ld", (long)self.score];
+    gameScore[@"playerName"] = [[PFUser currentUser] username];
+    gameScore[@"difficulty"] = [self stringFromDifficulty:self.difficulty];
+    gameScore[@"quizType"] = [self stringFromQuizType:self.quizType];
+    [gameScore saveInBackground];
+    
     //TODO: implement a way to save score based on difficulty and quiz type
     //Update highScoreLabel
 }
@@ -70,9 +78,16 @@
 }
 
 - (void)setLabels {
-    NSString *diff, *qType;
+
+    self.difficultyLabel.text = [NSString stringWithFormat:@"Difficulty: %@", [self stringFromDifficulty:self.difficulty]];
+    self.quizTypeLabel.text = [NSString stringWithFormat:@"%@", [self stringFromQuizType:self.quizType]];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.score];
+}
+
+- (NSString *)stringFromDifficulty:(NSInteger)difficulty {
+    NSString *diff;
     
-    switch (self.difficulty) {
+    switch (difficulty) {
         case 0:
             diff = @"Easy";
             break;
@@ -87,7 +102,13 @@
             break;
     }
     
-    switch (self.quizType) {
+    return diff;
+}
+
+- (NSString *)stringFromQuizType:(NSInteger)quizType {
+    NSString *qType;
+    
+    switch (quizType) {
         case 0:
             qType = @"Flags";
             break;
@@ -114,9 +135,7 @@
             break;
     }
     
-    self.difficultyLabel.text = diff;
-    self.quizTypeLabel.text = qType;
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.score];
+    return qType;
 }
 
 @end
