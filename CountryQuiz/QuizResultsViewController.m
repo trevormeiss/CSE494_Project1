@@ -29,7 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setLabels];
-    [self checkForHighScore];
+    if(self.quizMeOn == 2)
+        [self checkForHighScore];
+    else
+        self.highScoreLabel.hidden = YES;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

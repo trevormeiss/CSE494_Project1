@@ -79,11 +79,18 @@
 }
 
 -(void)getNewCountry{
-    
+    bool quizzable;
     do{
         self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
         self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
-    }while(self.currentQuestionType == 5 && [self.currentCountry.borderingCountryNames count] == 0);
+        
+        if(self.quizMeOn == 0)
+            quizzable = self.currentCountry.learned;
+        else if(self.quizMeOn == 1)
+            quizzable = !self.currentCountry.learned;
+        else
+            quizzable = true;
+    }while(!quizzable || (self.currentQuestionType == 5 && [self.currentCountry.borderingCountryNames count] == 0));
     
     [self setText];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -343,6 +350,7 @@
         dest.difficulty = self.difficulty;
         dest.quizType = self.quizType;
         dest.score = self.score;
+        dest.quizMeOn = self.quizMeOn;
     }
 }
 
