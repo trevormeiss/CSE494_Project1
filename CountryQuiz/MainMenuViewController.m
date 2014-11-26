@@ -25,7 +25,8 @@
     [super viewDidLoad];
     
     //Call this just to load the Countries while the user decides what to do
-    self.allCountries = [[AllCountries sharedCountries] allCountries];
+    if([PFUser currentUser])
+        self.allCountries = [[AllCountries sharedCountries] allCountries];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -8,6 +8,7 @@
 
 #import "QuizMenuViewController.h"
 #import "QuizViewController.h"
+#import "AllCountries.h"
 
 @interface QuizMenuViewController ()
 - (IBAction)flagButton:(id)sender;
@@ -17,7 +18,9 @@
 - (IBAction)randomButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *difficultySegmentOutlet;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *quizMeOnSegment;
-
+@property (weak, nonatomic) IBOutlet UILabel *noneLearnedLabel;
+@property NSMutableArray *allCountries;
+@property int numberLearned;
 @property int quizType;
 @end
 
@@ -27,6 +30,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //NSLog(@"count:%d",[self.allCountries count]);
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
+    [self getNumberLearned];
+    
+    self.noneLearnedLabel.hidden = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,6 +86,20 @@
 - (IBAction)randomButton:(id)sender {
     self.quizType = 99;
     [self performSegueWithIdentifier: @"startQuiz" sender:self];
+}
+-(void)getNumberLearned{
+    int n = 0;
+    for(Country *country in self.allCountries){
+        if(country.learned)
+            n += 1;
+    }
+    self.numberLearned = n;
+}
+- (IBAction)quizMeOnSegment:(id)sender {
+    if(self.numberLearned == 0){
+        self.noneLearnedLabel.hidden = false;
+        self.quizMeOnSegment.selectedSegmentIndex = 2;
+    }
 }
 
 @end
