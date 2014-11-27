@@ -66,16 +66,18 @@
     
     NSMutableDictionary *learnedInfo = [[NSMutableDictionary alloc] init];
     
-    for (PFObject *row in [query findObjects]) {
-        NSString *countryName = row[@"countryName"];
-        bool learned = [row[@"learned"] boolValue];
-        [learnedInfo setObject:@(learned) forKey:countryName];
-    }
-    
-    for(Country *country in allCountries){
-        NSString *countryName = country.name;
-        country.learned = [learnedInfo[countryName] boolValue];
-    }
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *row in objects)
+        {
+            NSString *countryName = row[@"countryName"];
+            bool learned = [row[@"learned"] boolValue];
+            [learnedInfo setObject:@(learned) forKey:countryName];
+        }
+        for(Country *country in allCountries){
+            NSString *countryName = country.name;
+            country.learned = [learnedInfo[countryName] boolValue];
+        }
+    }];
 }
 
 /*

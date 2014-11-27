@@ -60,8 +60,9 @@
     [query whereKey:@"playerName" equalTo:[[PFUser currentUser] username]];
     [query whereKey:@"difficulty" equalTo:[self stringFromDifficulty:self.difficulty]];
     [query whereKey:@"quizType" equalTo:[self stringFromQuizType:self.quizType]];
-    [query whereKey:@"score" greaterThan:[NSString stringWithFormat:@"%ld", (long)self.score]];
+    //[query whereKey:@"score" greaterThan:[NSString stringWithFormat:@"%ld", (long)self.score]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        // This is the first time the user has registered a score for this quizType and difficulty
         if (!object) {
             self.highScoreLabel.text = @"New High Score!";
             PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
@@ -71,7 +72,20 @@
             gameScore[@"quizType"] = [self stringFromQuizType:self.quizType];
             [gameScore saveInBackground];
         } else {
-            self.highScoreLabel.text = @"Not a High Score";
+            // This score beats all previous attempts by current user
+            if (self.score > [[object objectForKey:@"score"] intValue]) {
+                self.highScoreLabel.text = @"New High Score!";
+                object[@"score"] = @(self.score);
+                [object saveInBackground];
+            }
+            // This score is the same as user's previous high score
+            else if (self.score == [[object objectForKey:@"score"] intValue]) {
+                self.highScoreLabel.text = @"Tied Your High Score";
+            }
+            // This score is not a new high score
+            else {
+                self.highScoreLabel.text = @"Not a High Score";
+            }
         }
     }];
 }

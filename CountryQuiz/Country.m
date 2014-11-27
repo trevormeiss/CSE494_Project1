@@ -17,10 +17,10 @@
     //self.index
     self.capital = [newCountry objectForKey:@"capital"];
     
-    @try {
+    if ([newCountry objectForKey:@"area"] != [NSNull null]) {
         self.area = [[newCountry objectForKey:@"area"] intValue];
     }
-    @catch (NSException *exception) {
+    else {
         self.area = 0;
     }
     

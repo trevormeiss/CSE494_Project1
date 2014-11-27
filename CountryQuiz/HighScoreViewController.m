@@ -9,8 +9,6 @@
 #import "HighScoreViewController.h"
 #import <Parse/Parse.h>
 
-#define highScoreCount 10
-
 @interface HighScoreViewController ()
 
 - (IBAction)backButton:(id)sender;
@@ -122,40 +120,39 @@
 }
 
 - (void)populateLabels {
-    int count = 0;
     
     PFQuery *query = [PFQuery queryWithClassName:@"GameScore"];
     [query orderByDescending:@"score"];
     [query whereKey:@"difficulty" equalTo:[self stringFromDifficulty:self.difficulty]];
     [query whereKey:@"quizType" equalTo:[self stringFromQuizType:self.quizType]];
+    query.limit = self.usernameArray.count;
     
-    while (count < highScoreCount)
-    {
-        query.skip = count;
-        PFObject *found = [query getFirstObject];
-        if (!found) {
-            // No more high scores, so hide the remaining labels
-            while (count < highScoreCount) {
-                [[self.usernameArray objectAtIndex:count] setHidden:YES];
-                [[self.scoreArray objectAtIndex:count] setHidden:YES];
-                count++;
-            }
-        } else {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *topScores, NSError *error) {
+        int count = 0;
+        for (PFObject *gameScore in topScores)
+        {
             [[self.usernameArray objectAtIndex:count] setHidden:NO];
-            [[self.usernameArray objectAtIndex:count] setText:[NSString stringWithFormat:@"%d.     %@", (count+1), [found objectForKey:@"playerName"]]];
+            [[self.usernameArray objectAtIndex:count] setText:[NSString stringWithFormat:@"%d.     %@", (count+1), [gameScore objectForKey:@"playerName"]]];
             
             [[self.scoreArray objectAtIndex:count] setHidden:NO];
-            [[self.scoreArray objectAtIndex:count] setText:[found objectForKey:@"score"]];
+            [[self.scoreArray objectAtIndex:count] setText:[gameScore objectForKey:@"score"]];
             
             // Make the text bold for current user scores
-            if ([[found objectForKey:@"playerName"] isEqual:[[PFUser currentUser] username]]) {
+            if ([[gameScore objectForKey:@"playerName"] isEqual:[[PFUser currentUser] username]]) {
                 [[self.usernameArray objectAtIndex:count] setFont:[UIFont boldSystemFontOfSize:14.0f]];
                 [[self.scoreArray objectAtIndex:count] setFont:[UIFont boldSystemFontOfSize:14.0f]];
             }
             
             count++;
         }
-    }
+        while (count < self.usernameArray.count)
+        {
+            [[self.usernameArray objectAtIndex:count] setHidden:YES];
+            [[self.scoreArray objectAtIndex:count] setHidden:YES];
+            count++;
+        }
+        
+    }];
 }
 
 - (NSString *)stringFromDifficulty:(NSInteger)difficulty {
