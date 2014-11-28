@@ -59,12 +59,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.allCountries = [[AllCountries sharedCountries] allCountries];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    self.allCountries = [[AllCountries sharedCountries] allCountries];
     self.score = 0;
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d",self.score]];
     progressValue = 0.0f;

@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setLabels];
+    
     if(self.quizMeOn == 2)
         [self checkForHighScore];
     else
@@ -61,31 +62,30 @@
     [query whereKey:@"difficulty" equalTo:[self stringFromDifficulty:self.difficulty]];
     [query whereKey:@"quizType" equalTo:[self stringFromQuizType:self.quizType]];
     //[query whereKey:@"score" greaterThan:[NSString stringWithFormat:@"%ld", (long)self.score]];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *topScores, NSError *error) {
         // This is the first time the user has registered a score for this quizType and difficulty
-        if (!object) {
+        if (topScores.count > 0) {
+            PFObject *gameScore = [topScores objectAtIndex:0];
+            if ([[gameScore objectForKey:@"score"] intValue] < self.score) {
+                self.highScoreLabel.text = @"New High Score!";
+                gameScore[@"score"] = @(self.score);
+                [gameScore saveInBackground];
+            }
+            else if ([[gameScore objectForKey:@"score"] intValue] == self.score) {
+                self.highScoreLabel.text = @"Tied Previous High Score";
+            }
+            else {
+                self.highScoreLabel.text = @"Not a High Score";
+            }
+        } else {
             self.highScoreLabel.text = @"New High Score!";
             PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
-            gameScore[@"score"] = [NSString stringWithFormat:@"%ld", (long)self.score];
+            gameScore[@"score"] = @(self.score);
             gameScore[@"playerName"] = [[PFUser currentUser] username];
             gameScore[@"difficulty"] = [self stringFromDifficulty:self.difficulty];
             gameScore[@"quizType"] = [self stringFromQuizType:self.quizType];
             [gameScore saveInBackground];
-        } else {
-            // This score beats all previous attempts by current user
-            if (self.score > [[object objectForKey:@"score"] intValue]) {
-                self.highScoreLabel.text = @"New High Score!";
-                object[@"score"] = @(self.score);
-                [object saveInBackground];
-            }
-            // This score is the same as user's previous high score
-            else if (self.score == [[object objectForKey:@"score"] intValue]) {
-                self.highScoreLabel.text = @"Tied Your High Score";
-            }
-            // This score is not a new high score
-            else {
-                self.highScoreLabel.text = @"Not a High Score";
-            }
         }
     }];
 }
@@ -105,7 +105,7 @@
 
 - (void)setLabels {
     self.difficultyLabel.text = [NSString stringWithFormat:@"Difficulty: %@", [self stringFromDifficulty:self.difficulty]];
-    self.quizTypeLabel.text = [NSString stringWithFormat:@"%@", [self stringFromQuizType:self.quizType]];
+    self.quizTypeLabel.text = [NSString stringWithFormat:@"Type: %@", [self stringFromQuizType:self.quizType]];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", self.score];
 }
 

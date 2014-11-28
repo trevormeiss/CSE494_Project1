@@ -155,13 +155,8 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    //Sign up user with highScore of 0
-    
-    //user[@"score"] = @(self.score);
-    [user save];
-    
+    [user saveInBackground];
     [self dismissViewControllerAnimated:YES completion:Nil]; // Dismiss the PFSignUpViewController
-    
 }
 
 // Sent to the delegate when the sign up attempt fails.

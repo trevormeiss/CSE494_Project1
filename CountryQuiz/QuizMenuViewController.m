@@ -87,6 +87,7 @@
     self.quizType = 99;
     [self performSegueWithIdentifier: @"startQuiz" sender:self];
 }
+
 -(void)getNumberLearned{
     int n = 0;
     for(Country *country in self.allCountries){
