@@ -14,8 +14,14 @@
 @interface CountryTableViewController ()
 
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
-@property NSIndexPath* selected;
+@property NSIndexPath* selectedIndex;
 @property NSMutableArray *allCountries;
+@property NSArray *regionTitles;
+@property NSArray *subregionTitles;
+@property NSArray *alphaIndexTitles;
+@property NSString *sectionType;
+- (IBAction)sortButton:(id)sender;
+
 
 @end
 
@@ -24,8 +30,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.sectionType = @"name";
     self.allCountries = [[AllCountries sharedCountries] allCountries];
+    
+    self.regionTitles = [[[NSSet setWithArray:[self.allCountries valueForKey:@"region"]] allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    self.subregionTitles = [[[NSSet setWithArray:[self.allCountries valueForKey:@"subregion"]] allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    NSMutableSet *mySet = [[NSMutableSet alloc] init];
+    for (Country *country in self.allCountries)
+    {
+        NSString *s = [country valueForKey:@"name"];
+        if (s.length > 0 )
+            [mySet addObject:[s substringToIndex:1]];
+    }
+    self.alphaIndexTitles  = [[mySet allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,38 +56,100 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    NSInteger numSections = 1;
+    
+    if ([self.sectionType isEqualToString:@"name"]) {
+        numSections = [self.alphaIndexTitles count];
+    } else if ([self.sectionType isEqualToString:@"region"]) {
+        numSections = [self.regionTitles count];
+    } else if ([self.sectionType isEqualToString:@"subregion"]) {
+        numSections = [self.subregionTitles count];
+    }
+    
+    return numSections;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // this method is more complicated with multiple sections
-    return self.allCountries.count;
+    NSString* currentSectionTitle = nil;
+    NSInteger numRows = self.allCountries.count;
+    
+    if ([self.sectionType isEqualToString:@"name"]) {
+        currentSectionTitle = [self.alphaIndexTitles objectAtIndex:section];
+        numRows = 0;
+        for (Country *country in self.allCountries) {
+            if ([country.name hasPrefix:currentSectionTitle]) {
+                numRows++;
+            }
+        }
+    } else if ([self.sectionType isEqualToString:@"region"]) {
+        currentSectionTitle = [self.regionTitles objectAtIndex:section];
+        numRows = 0;
+        for (Country *country in self.allCountries) {
+            if ([country.region isEqualToString:currentSectionTitle]) {
+                numRows++;
+            }
+        }
+    } else if ([self.sectionType isEqualToString:@"subregion"]) {
+        currentSectionTitle = [self.subregionTitles objectAtIndex:section];
+        numRows = 0;
+        for (Country *country in self.allCountries) {
+            if ([country.subregion isEqualToString:currentSectionTitle]) {
+                numRows++;
+            }
+        }
+    }
+    
+    return numRows;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    //cell.imageView.image = self.constellationImages[indexPath.row]; // a UIImage
-    Country *country = [self.allCountries objectAtIndex:indexPath.row];
+    Country *country = [self countryAtIndexPath:indexPath];
+    
     cell.textLabel.text = country.name; // the title
-   // cell.detailTextLabel.text = self.constellationDetail[indexPath.row]; // the subtitle
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row % 2 == 0)
-        cell.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.1];
-    else
-        cell.backgroundColor = [UIColor whiteColor];
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSArray *indexTitles = nil;
+    if ([self.sectionType isEqualToString:@"name"]) {
+        indexTitles = self.alphaIndexTitles;
+    }
+    
+    // This looks pretty bad
+    /*if ([self.sectionType isEqualToString:@"region"]) {
+        indexTitles = self.regionTitles;
+    } else if ([self.sectionType isEqualToString:@"subregion"]) {
+        indexTitles = self.subregionTitles;
+    }*/
+    
+    return indexTitles;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selected = [tableView indexPathForSelectedRow];
+    self.selectedIndex = [tableView indexPathForSelectedRow];
     [self performSegueWithIdentifier:@"countryToInfo" sender:self];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString* headerTitle = nil;
+    
+    if ([self.sectionType isEqualToString:@"name"]) {
+        headerTitle = [self.alphaIndexTitles objectAtIndex:section];
+    } else if ([self.sectionType isEqualToString:@"region"]) {
+        headerTitle = [self.regionTitles objectAtIndex:section];
+    } else if ([self.sectionType isEqualToString:@"subregion"]) {
+        headerTitle = [self.subregionTitles objectAtIndex:section];
+    }
+    
+    return headerTitle;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -77,11 +157,144 @@
     if ([[segue identifier] isEqualToString:@"countryToInfo"])
     {
         InfoViewController *dest = segue.destinationViewController;
-        //dest.allCountries = self.allCountries;
-        dest.selectedCountry = self.selected;
+        dest.selectedCountry = [self countryAtIndexPath:self.selectedIndex];
     }
 }
 
+- (IBAction)sortButton:(id)sender {
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Sort countries by"
+                                          message:nil
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                  style:UIAlertActionStyleCancel
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                       //NSLog(@"Cancel action");
+                                  }];
+    
+    UIAlertAction *alphaAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Alphabetical", @"Alphabetical action")
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      [self sortCountriesByString:@"name" ascending:YES];
+                                      self.sectionType = @"name";
+                                      [self.tableView reloadData];
+                                  }];
+    UIAlertAction *regionAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Region", @"Region action")
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      [self sortCountriesByString:@"region" ascending:YES];
+                                      self.sectionType = @"region";
+                                      [self.tableView reloadData];
+                                  }];
+    UIAlertAction *subregionAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Subregion", @"Subregion action")
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      [self sortCountriesByString:@"subregion" ascending:YES];
+                                      self.sectionType = @"subregion";
+                                      [self.tableView reloadData];
+                                  }];
+    UIAlertAction *populationAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Population", @"Population action")
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      [self sortCountriesByInt:@"population" ascending:NO];
+                                      self.sectionType = @"population";
+                                      [self.tableView reloadData];
+                                  }];
+    UIAlertAction *areaAction = [UIAlertAction
+                                  actionWithTitle:NSLocalizedString(@"Area", @"Area action")
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction *action)
+                                  {
+                                      [self sortCountriesByInt:@"area" ascending:NO];
+                                      self.sectionType = @"area";
+                                      [self.tableView reloadData];
+                                  }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:alphaAction];
+    [alertController addAction:regionAction];
+    [alertController addAction:subregionAction];
+    [alertController addAction:populationAction];
+    [alertController addAction:areaAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)sortCountriesByInt:(NSString *)type ascending:(BOOL)ascendingBool{
+    NSComparator comparePopulation = ^(id string1, id string2)
+    {
+        NSNumber *number1 = [NSNumber numberWithFloat:[string1 floatValue]];
+        NSNumber *number2 = [NSNumber numberWithFloat:[string2 floatValue]];
+        
+        return [number1 compare:number2];
+    };
+    
+    // sort list and create nearest list
+    NSSortDescriptor *sortDescriptorNearest = [NSSortDescriptor sortDescriptorWithKey:type ascending:ascendingBool comparator:comparePopulation];
+    self.allCountries = (NSMutableArray *)[self.allCountries sortedArrayUsingDescriptors:@[sortDescriptorNearest]];
+}
+
+- (void)sortCountriesByString:(NSString *)type ascending:(BOOL)ascendingBool {
+    NSSortDescriptor *stringDescriptor = [[NSSortDescriptor alloc] initWithKey:type
+                                        ascending:ascendingBool
+                                        selector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    self.allCountries = (NSMutableArray *)[self.allCountries sortedArrayUsingDescriptors:@[stringDescriptor]];
+}
+
+- (Country *)countryAtIndexPath:(NSIndexPath *)indexPath {
+    Country *country;
+    
+    if ([self.sectionType isEqualToString:@"name"]) {
+        NSString *sectionTitle = [self.alphaIndexTitles objectAtIndex:indexPath.section];
+        NSMutableArray *sectionCountries = [[NSMutableArray alloc] init];
+        for (Country *countryLoop in self.allCountries)
+        {
+            if ([[countryLoop valueForKey:@"name"] hasPrefix:sectionTitle]) {
+                [sectionCountries addObject:countryLoop];
+            }
+        }
+        
+        country = [sectionCountries objectAtIndex:indexPath.row];
+    } else if ([self.sectionType isEqualToString:@"region"]) {
+        NSString *sectionTitle = [self.regionTitles objectAtIndex:indexPath.section];
+        NSMutableArray *sectionCountries = [[NSMutableArray alloc] init];
+        for (Country *countryLoop in self.allCountries)
+        {
+            if ([[countryLoop valueForKey:@"region"] isEqualToString:sectionTitle]) {
+                [sectionCountries addObject:countryLoop];
+            }
+        }
+        country = [sectionCountries objectAtIndex:indexPath.row];
+        
+    } else if ([self.sectionType isEqualToString:@"subregion"]) {
+        NSString *sectionTitle = [self.subregionTitles objectAtIndex:indexPath.section];
+        NSMutableArray *sectionCountries = [[NSMutableArray alloc] init];
+        for (Country *countryLoop in self.allCountries)
+        {
+            if ([[countryLoop valueForKey:@"subregion"] isEqualToString:sectionTitle]) {
+                [sectionCountries addObject:countryLoop];
+            }
+        }
+        country = [sectionCountries objectAtIndex:indexPath.row];
+    } else {
+        country = [self.allCountries objectAtIndex:indexPath.row];
+    }
+    
+    return country;
+}
 
 /*
 // Override to support conditional editing of the table view.

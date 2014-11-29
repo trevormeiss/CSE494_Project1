@@ -38,6 +38,13 @@
     self.borderingCountryNames = [[NSMutableArray alloc] init];
     self.borderingCountryObjects = [[NSMutableArray alloc] init];
     self.learned=false;
+    
+    if ([self.region isEqualToString:@""] || [self.region isEqual:nil]) {
+        self.region = @"Other";
+    }
+    if ([self.subregion isEqualToString:@""] || [self.subregion isEqual:nil]) {
+        self.subregion = @"Other";
+    }
 }
 
 -(UIImage *)getFlag{

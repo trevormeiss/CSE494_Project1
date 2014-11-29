@@ -8,7 +8,6 @@
 
 #import "InfoViewController.h"
 #import "AllCountries.h"
-#import "Country.h"
 
 @interface InfoViewController ()
 
@@ -23,9 +22,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *learnedSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *learnedLabel;
-@property NSIndexPath* selected;
 
-@property NSMutableArray *allCountries;
 @property Country *country;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -36,9 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.allCountries = [[AllCountries sharedCountries] allCountries];
+    self.country = self.selectedCountry;
     
-    self.country = [self.allCountries objectAtIndex:_selectedCountry.row];
     NSString *popString = [NSNumberFormatter localizedStringFromNumber:@(self.country.population)
                                                            numberStyle:NSNumberFormatterDecimalStyle];//[NSString stringWithFormat:@"%d", country.population];
     NSString *areaString = [NSNumberFormatter localizedStringFromNumber:@(self.country.area)
@@ -162,10 +158,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row % 2 == 0)
+    /*if(indexPath.row % 2 == 0)
         cell.backgroundColor = [UIColor colorWithWhite:0.7 alpha:0.1];
     else
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];*/
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
