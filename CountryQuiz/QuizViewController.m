@@ -84,6 +84,24 @@
         self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
         self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
         
+        if(self.difficulty == 0)
+        {
+            while(self.currentCountry.population < 25000000)
+            {
+                self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
+                self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
+            }
+        }
+        else if(self.difficulty == 1)
+        {
+            while(self.currentCountry.population < 1800000)
+            {
+                self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
+                self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
+            }
+        }
+
+        
         if(self.quizMeOn == 0)
             quizzable = self.currentCountry.learned;
         else if(self.quizMeOn == 1)
