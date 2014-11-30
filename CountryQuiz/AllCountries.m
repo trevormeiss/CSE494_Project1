@@ -41,7 +41,6 @@
         //reverse order of countries
         allCountries = (NSMutableArray *)[[allCountries reverseObjectEnumerator] allObjects];
         [self getBorderingCountries];
-        [self loadUserLearnedInfo];
     }
     return self;
 }
@@ -60,7 +59,7 @@
     }
 }
 
--(void)loadUserLearnedInfo{
++ (void)loadUserLearnedInfo:(NSMutableArray *)allCountries {
     PFQuery *query = [PFQuery queryWithClassName:@"UserLearned"];
     [query whereKey:@"user" equalTo:[[PFUser currentUser] username]];
     

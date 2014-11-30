@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSMutableArray *allCountries;
 
 + (id)sharedCountries;
++ (void)loadUserLearnedInfo:(NSMutableArray *)allCountries;
 
 @end

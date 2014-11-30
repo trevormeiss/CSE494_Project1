@@ -30,14 +30,16 @@
     UIColor * customBlueColor = [UIColor colorWithRed:63/255.0f green:177/255.0f blue:235/255.0f alpha:1.0f];
     gradient.colors = [NSArray arrayWithObjects:(id)[customCyanColor CGColor], (id)[customBlueColor CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
-    
-    //Call this just to load the Countries while the user decides what to do
-    if([PFUser currentUser])
-        self.allCountries = [[AllCountries sharedCountries] allCountries];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    //Call this just to load the Countries while the user decides what to do
+    if([PFUser currentUser]) {
+        self.allCountries = [[AllCountries sharedCountries] allCountries];
+        [AllCountries loadUserLearnedInfo:self.allCountries];
+    }
     
     //self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %@", [[PFUser currentUser] objectForKey:@"score"]];
     self.usernameLabel.text = [[PFUser currentUser] username];
