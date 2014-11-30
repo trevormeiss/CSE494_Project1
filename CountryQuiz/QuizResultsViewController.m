@@ -30,10 +30,12 @@
     [super viewDidLoad];
     [self setLabels];
     
-    if(self.quizMeOn == 2)
+    if(self.quizMeOn == 2) {
+        self.highScoreLabel.hidden = NO;
         [self checkForHighScore];
-    else
+    } else {
         self.highScoreLabel.hidden = YES;
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

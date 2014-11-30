@@ -22,6 +22,9 @@
 @interface QuizViewController ()
 
 @property NSMutableArray *allCountries;
+@property NSMutableArray *learnedCountries;
+@property NSMutableArray *unlearnedCountries;
+@property NSMutableArray *quizzableCountries;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property int currentCountryIndex;
@@ -33,6 +36,7 @@
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic) float progressValue;
+@property float progressIncrease;
 
 @property (weak, nonatomic) IBOutlet UIButton *answer1;
 @property (weak, nonatomic) IBOutlet UIButton *answer2;
@@ -67,8 +71,11 @@
     self.allCountries = [[AllCountries sharedCountries] allCountries];
     self.score = 0;
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d",self.score]];
-    progressValue = 0.0f;
+    
     self.currentQuestion = 0;
+    
+    [self initProgressView];
+    [self findLearnedCountries];
     
     [self nextQuestion];
 }
@@ -79,35 +86,24 @@
 }
 
 -(void)getNewCountry{
+    
     bool quizzable;
     do{
-        self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
-        self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
-        
-        if(self.difficulty == 0)
-        {
-            while(self.currentCountry.population < 25000000)
-            {
-                self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
-                self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
-            }
-        }
-        else if(self.difficulty == 1)
-        {
-            while(self.currentCountry.population < 1800000)
-            {
-                self.currentCountryIndex = arc4random_uniform((int)[self.allCountries count]);
-                self.currentCountry = [self.allCountries objectAtIndex:self.currentCountryIndex];
-            }
-        }
+        self.currentCountryIndex = arc4random_uniform((int)[self.quizzableCountries count]);
+        self.currentCountry = [self.quizzableCountries objectAtIndex:self.currentCountryIndex];
 
-        
-        if(self.quizMeOn == 0)
-            quizzable = self.currentCountry.learned;
-        else if(self.quizMeOn == 1)
-            quizzable = !self.currentCountry.learned;
-        else
+        // We don't care about population if only quizzing on learned or unlearned countries
+        // Otherwise there is a potential for infinite loops
+        if (self.quizMeOn == 0 || self.quizMeOn == 1) {
             quizzable = true;
+        } else if (self.difficulty == 0 && self.currentCountry.population < 25000000) {
+            quizzable = false;
+        } else if (self.difficulty == 1 && self.currentCountry.population < 1800000) {
+            quizzable = false;
+        } else {
+            quizzable = true;
+        }
+        
     }while(!quizzable || (self.currentQuestionType == 5 && [self.currentCountry.borderingCountryNames count] == 0));
     
     [self setText];
@@ -121,7 +117,9 @@
 
 -(void)removeCountryFromList{
     //I don't know if we should use this or not
-    //[self.allCountries removeObjectAtIndex:self.currentCountryIndex];
+    if (self.quizMeOn == 2) {
+        [self.quizzableCountries removeObjectAtIndex:self.currentCountryIndex];
+    }
 }
 
 -(void)getQuestion{
@@ -241,6 +239,9 @@
     //add real answer
     [[arrayOfAnswers objectAtIndex:0] setTitle:realAnswer forState:UIControlStateNormal];
     self.realAnswer = [arrayOfAnswers objectAtIndex:0];
+    
+    // Remove the country so repeats do not happen
+    [self removeCountryFromList];
 }
 
 -(void)resetButtonColors{
@@ -332,7 +333,7 @@
 -(void)increaseProgressValue {
     if(progressView.progress < 1 && !self.answered)
     {
-        progressValue = progressValue+0.02;
+        progressValue += self.progressIncrease;
         progressView.progress = progressValue;
         if (progressValue < limit1) {
             progressView.progressTintColor = [UIColor greenColor];
@@ -344,16 +345,44 @@
             progressView.progressTintColor = [UIColor orangeColor];
         }
         
-        [self performSelector:@selector(increaseProgressValue) withObject:self afterDelay:0.1];
+        [self performSelector:@selector(increaseProgressValue) withObject:self afterDelay:0.05];
     }
     if (progressView.progress >= 1 && !self.answered) {
         progressView.progressTintColor = [UIColor redColor];
     }
 }
 
+- (void)initProgressView {
+    progressValue = 0.0f;
+    self.progressIncrease = 0.005;
+    if (self.difficulty == 1) {
+        self.progressIncrease = 0.008;
+    } else if (self.difficulty == 2) {
+        self.progressIncrease = 0.012;
+    }
+}
+
 -(void)resetProgressView {
     progressValue = 0;
     progressView.progress = 0;
+}
+
+- (void)findLearnedCountries {
+    self.learnedCountries = [[NSMutableArray alloc] initWithObjects:nil];
+    self.unlearnedCountries = [[NSMutableArray alloc] initWithObjects:nil];
+    for (Country *country in self.allCountries) {
+        if (country.learned) {
+            [self.learnedCountries addObject:country];
+        } else {
+            [self.unlearnedCountries addObject:country];
+        }
+    }
+    self.quizzableCountries = [[NSMutableArray alloc] initWithArray:self.allCountries];
+    if (self.quizMeOn == 0) {
+        self.quizzableCountries = self.learnedCountries;
+    } else if (self.quizMeOn == 1) {
+        self.quizzableCountries = self.unlearnedCountries;
+    }
 }
 
 

@@ -24,6 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    UIColor * customCyanColor = [UIColor colorWithRed:113/255.0f green:227/255.0f blue:242/255.0f alpha:1.0f];
+    UIColor * customBlueColor = [UIColor colorWithRed:63/255.0f green:177/255.0f blue:235/255.0f alpha:1.0f];
+    gradient.colors = [NSArray arrayWithObjects:(id)[customCyanColor CGColor], (id)[customBlueColor CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
+    
     //Call this just to load the Countries while the user decides what to do
     if([PFUser currentUser])
         self.allCountries = [[AllCountries sharedCountries] allCountries];

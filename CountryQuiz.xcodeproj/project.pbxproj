@@ -10,6 +10,7 @@
 		481B76201A1A85870016A698 /* HighScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481B761F1A1A85870016A698 /* HighScoreViewController.m */; };
 		481B76231A1A97940016A698 /* QuizResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 481B76221A1A97940016A698 /* QuizResultsViewController.m */; };
 		485690321A1AB3C40098CB2A /* AllCountries.m in Sources */ = {isa = PBXBuildFile; fileRef = 485690311A1AB3C40098CB2A /* AllCountries.m */; };
+		488C93171A2AC87D0072AAA1 /* CountryQuizLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 488C93161A2AC87D0072AAA1 /* CountryQuizLogo.png */; };
 		80B41ACF1A032C5800AB6770 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41ACE1A032C5800AB6770 /* Bolts.framework */; };
 		80B41AD11A032C6600AB6770 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41AD01A032C6600AB6770 /* Parse.framework */; };
 		80B41AD31A032C8300AB6770 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B41AD21A032C8300AB6770 /* AudioToolbox.framework */; };
@@ -82,6 +83,7 @@
 		481B76221A1A97940016A698 /* QuizResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizResultsViewController.m; sourceTree = "<group>"; };
 		485690301A1AB3C30098CB2A /* AllCountries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCountries.h; sourceTree = "<group>"; };
 		485690311A1AB3C40098CB2A /* AllCountries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCountries.m; sourceTree = "<group>"; };
+		488C93161A2AC87D0072AAA1 /* CountryQuizLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CountryQuizLogo.png; sourceTree = "<group>"; };
 		80B41ACE1A032C5800AB6770 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		80B41AD01A032C6600AB6770 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		80B41AD21A032C8300AB6770 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -269,6 +271,7 @@
 		B52AA45C19F83AD70069BC08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				488C93161A2AC87D0072AAA1 /* CountryQuizLogo.png */,
 				B54E2DAF1A0AB97000D1B568 /* Assignment5Ideas.pdf */,
 				834524BB1A0AB390008D0F2A /* btn_close_normal.png */,
 				834524BC1A0AB390008D0F2A /* btn_close_normal@2x.png */,
@@ -440,6 +443,7 @@
 				B54E2DB01A0AB97000D1B568 /* Assignment5Ideas.pdf in Resources */,
 				834524BF1A0AB390008D0F2A /* btn_close_normal.png in Resources */,
 				8326A0AE1A08790600B08FCA /* Icon-Small@3x.png in Resources */,
+				488C93171A2AC87D0072AAA1 /* CountryQuizLogo.png in Resources */,
 				B52AA46819F83AD70069BC08 /* Main.storyboard in Resources */,
 				B52AA46D19F83AD70069BC08 /* LaunchScreen.xib in Resources */,
 				83300ADA1A07340300D0808B /* CountryQuiz_isolated.jpg in Resources */,

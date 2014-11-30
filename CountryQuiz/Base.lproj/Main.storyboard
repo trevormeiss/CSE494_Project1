@@ -20,43 +20,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jm6-gy-3FD">
-                                <rect key="frame" x="143" y="296" width="35" height="30"/>
+                                <rect key="frame" x="139" y="300" width="43" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Quiz!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="xML-rR-gMb" kind="push" identifier="quiz" id="4n9-La-q5I"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CountryQuiz_isolated.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-w3-Cc2">
-                                <rect key="frame" x="38" y="77" width="244" height="163"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="MoG-w3-Cc2" secondAttribute="height" multiplier="3:2" id="QzX-7s-Pbz"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWC-NS-MJn">
-                                <rect key="frame" x="120" y="350" width="80" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="121" y="350" width="78" height="22"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPh-km-C0I">
                                 <rect key="frame" x="132" y="420" width="56" height="30"/>
                                 <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="LogOutButton:" destination="Blr-Dy-fK8" eventType="touchUpInside" id="LkS-tF-Tkd"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m95-VH-b15">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m95-VH-b15">
+                                <rect key="frame" x="134" y="229" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAf-8u-Xn8">
-                                <rect key="frame" x="139" y="256" width="43" height="30"/>
+                                <rect key="frame" x="134" y="256" width="53" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="Learn!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -66,30 +66,37 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBM-Jn-wKC">
                                 <rect key="frame" x="118" y="382" width="84" height="30"/>
                                 <state key="normal" title="High Scores">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Kqv-u9-mOJ" kind="modal" identifier="highScore" id="Agd-zt-lD5"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="CountryQuizLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="MoG-w3-Cc2">
+                                <rect key="frame" x="79" y="77" width="163" height="163"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MoG-w3-Cc2" secondAttribute="height" multiplier="1:1" id="Zkp-bw-FeU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="m95-VH-b15" firstAttribute="top" secondItem="MoG-w3-Cc2" secondAttribute="bottom" constant="-11" id="66w-Qc-HYZ"/>
                             <constraint firstAttribute="centerX" secondItem="CPh-km-C0I" secondAttribute="centerX" id="6ug-uk-cmP"/>
                             <constraint firstAttribute="centerX" secondItem="Jm6-gy-3FD" secondAttribute="centerX" id="8gX-pL-L5k"/>
                             <constraint firstAttribute="centerX" secondItem="eBM-Jn-wKC" secondAttribute="centerX" id="Awh-T4-oU4"/>
                             <constraint firstAttribute="centerY" secondItem="m95-VH-b15" secondAttribute="centerY" constant="0.5" id="C1T-Vs-bYu"/>
+                            <constraint firstAttribute="centerX" secondItem="MoG-w3-Cc2" secondAttribute="centerX" constant="-0.5" id="Jmu-Br-ZFf"/>
+                            <constraint firstItem="TAf-8u-Xn8" firstAttribute="top" secondItem="m95-VH-b15" secondAttribute="bottom" constant="6" id="TMr-aR-aEr"/>
                             <constraint firstAttribute="centerX" secondItem="XWC-NS-MJn" secondAttribute="centerX" id="UxH-LX-Xin"/>
-                            <constraint firstAttribute="centerX" secondItem="MoG-w3-Cc2" secondAttribute="centerX" id="X3g-xL-Bno"/>
                             <constraint firstItem="CPh-km-C0I" firstAttribute="top" secondItem="eBM-Jn-wKC" secondAttribute="bottom" constant="8" id="Xl6-zl-WwD"/>
                             <constraint firstAttribute="centerX" secondItem="m95-VH-b15" secondAttribute="centerX" id="Xtg-JK-1X9"/>
                             <constraint firstItem="eBM-Jn-wKC" firstAttribute="top" secondItem="XWC-NS-MJn" secondAttribute="bottom" constant="10" id="Xxj-hm-tCM"/>
-                            <constraint firstItem="TAf-8u-Xn8" firstAttribute="top" secondItem="MoG-w3-Cc2" secondAttribute="bottom" constant="16" id="cpP-CF-eug"/>
-                            <constraint firstItem="MoG-w3-Cc2" firstAttribute="top" secondItem="OWf-rE-rtL" secondAttribute="bottom" constant="13" id="fpa-q0-Rv0"/>
-                            <constraint firstItem="m95-VH-b15" firstAttribute="top" secondItem="MoG-w3-Cc2" secondAttribute="bottom" id="fsa-km-IxN"/>
                             <constraint firstAttribute="centerX" secondItem="TAf-8u-Xn8" secondAttribute="centerX" id="jYL-0b-WvJ"/>
                             <constraint firstItem="1ca-hj-GOf" firstAttribute="top" secondItem="CPh-km-C0I" secondAttribute="bottom" constant="30" id="mbd-md-fJA"/>
                             <constraint firstItem="Jm6-gy-3FD" firstAttribute="top" secondItem="TAf-8u-Xn8" secondAttribute="bottom" constant="10" id="vQY-nw-rRR"/>
+                            <constraint firstItem="MoG-w3-Cc2" firstAttribute="top" secondItem="OWf-rE-rtL" secondAttribute="bottom" constant="13" id="wC1-B3-5X0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Country Quiz" id="qnF-7K-SIu"/>
@@ -1097,7 +1104,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CountryQuiz_isolated.jpg" width="480" height="320"/>
+        <image name="CountryQuizLogo.png" width="1024" height="1024"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
