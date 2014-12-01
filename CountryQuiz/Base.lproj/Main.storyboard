@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hqo-AU-d9a">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -300,6 +300,15 @@
                                             <outlet property="delegate" destination="JDR-ZL-h3E" id="qwo-NA-5XP"/>
                                         </connections>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxL-Fb-cEJ">
+                                        <rect key="frame" x="71" y="769" width="178" height="30"/>
+                                        <state key="normal" title="View Population Statistics">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="axJ-CT-shk" kind="push" id="eqt-XY-TFx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="FyV-Sd-vEE" firstAttribute="leading" secondItem="Z8j-iZ-aji" secondAttribute="leading" constant="29" id="30F-WT-GF8"/>
@@ -373,6 +382,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cph-a2-waQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1129" y="-393"/>
+        </scene>
+        <!--Population View Controller-->
+        <scene sceneID="uVg-3X-JWU">
+            <objects>
+                <viewController id="axJ-CT-shk" customClass="PopulationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2NE-Wa-sPI"/>
+                        <viewControllerLayoutGuide type="bottom" id="KhB-Ku-QaP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vXj-ob-G3y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="860"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c56-dV-MEg" customClass="BEMSimpleLineGraphView">
+                                <rect key="frame" x="16" y="148" width="288" height="228"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="axJ-CT-shk" id="Dqw-nA-SZI"/>
+                                    <outlet property="delegate" destination="axJ-CT-shk" id="z8o-3b-a5t"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIL-PU-u0r">
+                                <rect key="frame" x="16" y="406" width="288" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-eW-ua3">
+                                <rect key="frame" x="16" y="447" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb2-jA-UE6">
+                                <rect key="frame" x="16" y="72" width="288" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gwy-Cg-BKP"/>
+                    <connections>
+                        <outlet property="myGraph" destination="c56-dV-MEg" id="kFP-CZ-n6T"/>
+                        <outlet property="popLabel" destination="CIL-PU-u0r" id="3KP-0h-dHv"/>
+                        <outlet property="titleLabel" destination="gb2-jA-UE6" id="kgW-uq-p95"/>
+                        <outlet property="yearLabel" destination="KbW-eW-ua3" id="Bg0-g4-Mfg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GSQ-ca-Mv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1508" y="-399"/>
         </scene>
         <!--High Scores-->
         <scene sceneID="zcz-hY-Ses">

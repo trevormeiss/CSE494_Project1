@@ -62,6 +62,10 @@
 		B52AA56D19F84BD60069BC08 /* UNIUrlConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AA55F19F84BD60069BC08 /* UNIUrlConnection.m */; };
 		B54E2DB01A0AB97000D1B568 /* Assignment5Ideas.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B54E2DAF1A0AB97000D1B568 /* Assignment5Ideas.pdf */; };
 		B59C8C7B1A13EF8C000EF463 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59C8C7A1A13EF8C000EF463 /* MapKit.framework */; };
+		B5DBFA5C1A2CE9540030AC4E /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DBFA571A2CE9540030AC4E /* BEMCircle.m */; };
+		B5DBFA5D1A2CE9540030AC4E /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DBFA591A2CE9540030AC4E /* BEMLine.m */; };
+		B5DBFA5E1A2CE9540030AC4E /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DBFA5B1A2CE9540030AC4E /* BEMSimpleLineGraphView.m */; };
+		B5DBFA611A2CE9C30030AC4E /* PopulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DBFA601A2CE9C30030AC4E /* PopulationViewController.m */; };
 		DCBDA7AC1A017103008AA288 /* CountryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBDA7AB1A017103008AA288 /* CountryTableViewController.m */; };
 		DCBDA7AF1A018343008AA288 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBDA7AE1A018343008AA288 /* InfoViewController.m */; };
 /* End PBXBuildFile section */
@@ -162,6 +166,14 @@
 		B52AA55F19F84BD60069BC08 /* UNIUrlConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNIUrlConnection.m; sourceTree = "<group>"; };
 		B54E2DAF1A0AB97000D1B568 /* Assignment5Ideas.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Assignment5Ideas.pdf; sourceTree = "<group>"; };
 		B59C8C7A1A13EF8C000EF463 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B5DBFA561A2CE9540030AC4E /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
+		B5DBFA571A2CE9540030AC4E /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
+		B5DBFA581A2CE9540030AC4E /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
+		B5DBFA591A2CE9540030AC4E /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
+		B5DBFA5A1A2CE9540030AC4E /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
+		B5DBFA5B1A2CE9540030AC4E /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
+		B5DBFA5F1A2CE9C30030AC4E /* PopulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopulationViewController.h; sourceTree = "<group>"; };
+		B5DBFA601A2CE9C30030AC4E /* PopulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopulationViewController.m; sourceTree = "<group>"; };
 		DCBDA7AA1A017103008AA288 /* CountryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryTableViewController.h; sourceTree = "<group>"; };
 		DCBDA7AB1A017103008AA288 /* CountryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryTableViewController.m; sourceTree = "<group>"; };
 		DCBDA7AD1A018343008AA288 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -243,6 +255,8 @@
 				B52AA46619F83AD70069BC08 /* Main.storyboard */,
 				B50D9E3E19FEF3A500DC67F8 /* MainMenuViewController.h */,
 				B50D9E3F19FEF3A500DC67F8 /* MainMenuViewController.m */,
+				B5DBFA5F1A2CE9C30030AC4E /* PopulationViewController.h */,
+				B5DBFA601A2CE9C30030AC4E /* PopulationViewController.m */,
 				B50D9E4A19FEFF1100DC67F8 /* QuizMenuViewController.h */,
 				B50D9E4B19FEFF1100DC67F8 /* QuizMenuViewController.m */,
 				481B761E1A1A85870016A698 /* HighScoreViewController.h */,
@@ -271,6 +285,7 @@
 		B52AA45C19F83AD70069BC08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5DBFA551A2CE9540030AC4E /* Classes */,
 				488C93161A2AC87D0072AAA1 /* CountryQuizLogo.png */,
 				B54E2DAF1A0AB97000D1B568 /* Assignment5Ideas.pdf */,
 				834524BB1A0AB390008D0F2A /* btn_close_normal.png */,
@@ -358,6 +373,19 @@
 				B52AA55419F84BD60069BC08 /* UNIJsonNode.m */,
 			);
 			path = HttpResponse;
+			sourceTree = "<group>";
+		};
+		B5DBFA551A2CE9540030AC4E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B5DBFA561A2CE9540030AC4E /* BEMCircle.h */,
+				B5DBFA571A2CE9540030AC4E /* BEMCircle.m */,
+				B5DBFA581A2CE9540030AC4E /* BEMLine.h */,
+				B5DBFA591A2CE9540030AC4E /* BEMLine.m */,
+				B5DBFA5A1A2CE9540030AC4E /* BEMSimpleLineGraphView.h */,
+				B5DBFA5B1A2CE9540030AC4E /* BEMSimpleLineGraphView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52AA56819F84BD60069BC08 /* UNIJsonNode.m in Sources */,
+				B5DBFA611A2CE9C30030AC4E /* PopulationViewController.m in Sources */,
 				B52AA56019F84BD60069BC08 /* Base64.m in Sources */,
 				DCBDA7AF1A018343008AA288 /* InfoViewController.m in Sources */,
 				481B76231A1A97940016A698 /* QuizResultsViewController.m in Sources */,
@@ -488,14 +517,17 @@
 				B52AA56219F84BD60069BC08 /* UNIBodyRequest.m in Sources */,
 				B52AA56D19F84BD60069BC08 /* UNIUrlConnection.m in Sources */,
 				B52AA56719F84BD60069BC08 /* UNIHTTPStringResponse.m in Sources */,
+				B5DBFA5E1A2CE9540030AC4E /* BEMSimpleLineGraphView.m in Sources */,
 				B52AA46219F83AD70069BC08 /* AppDelegate.m in Sources */,
 				485690321A1AB3C40098CB2A /* AllCountries.m in Sources */,
 				B50D9E4C19FEFF1100DC67F8 /* QuizMenuViewController.m in Sources */,
 				B52AA56A19F84BD60069BC08 /* UNIHTTPRequest.m in Sources */,
+				B5DBFA5C1A2CE9540030AC4E /* BEMCircle.m in Sources */,
 				B52AA56B19F84BD60069BC08 /* UNIHTTPRequestWithBody.m in Sources */,
 				B52AA56619F84BD60069BC08 /* UNIHTTPResponse.m in Sources */,
 				B52AA45F19F83AD70069BC08 /* main.m in Sources */,
 				B52AA56C19F84BD60069BC08 /* UNIRest.m in Sources */,
+				B5DBFA5D1A2CE9540030AC4E /* BEMLine.m in Sources */,
 				B516E9B119FAF7A200852353 /* Country.m in Sources */,
 				B52AA56119F84BD60069BC08 /* UNIBaseRequest.m in Sources */,
 				481B76201A1A85870016A698 /* HighScoreViewController.m in Sources */,
