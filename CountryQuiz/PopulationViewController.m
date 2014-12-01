@@ -29,11 +29,17 @@
     self.myGraph.enablePopUpReport = YES;
     self.myGraph.enableTouchReport = YES;
     [self.titleLabel setText:self.countryName];
-    NSInteger population = [[[self.entries objectAtIndex:[self.entries count]-1] valueForKey:@"value"] integerValue];
+    if([self.entries count] > 0){
+        NSInteger population = [[[self.entries objectAtIndex:[self.entries count]-1] valueForKey:@"value"] integerValue];
     
-    [self.popLabel setText:[NSNumberFormatter localizedStringFromNumber:@(population)
+        [self.popLabel setText:[NSNumberFormatter localizedStringFromNumber:@(population)
                                                             numberStyle:NSNumberFormatterDecimalStyle]];
-    [self.yearLabel setText:[NSString stringWithFormat:@"in %@", [[self.entries objectAtIndex:[self.entries count]-1] valueForKey:@"date"]]];
+        [self.yearLabel setText:[NSString stringWithFormat:@"in %@", [[self.entries objectAtIndex:[self.entries count]-1] valueForKey:@"date"]]];
+    }
+    else{
+        self.popLabel.text = @"No info";
+        self.yearLabel.text = @"";
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +82,11 @@
     NSData *requestData =[NSData dataWithContentsOfURL:[NSURL URLWithString:requestString]];
     NSError *e = nil;
     NSArray *countryArray = [NSJSONSerialization JSONObjectWithData:requestData options: NSJSONReadingMutableContainers error: &e];
+    if([countryArray count] > 1){
     self.entries = [[countryArray[1] reverseObjectEnumerator] allObjects];
+    }
+    else
+        self.entries = [[NSArray alloc]init];
 }
 
 @end
