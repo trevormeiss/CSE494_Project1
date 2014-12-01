@@ -58,6 +58,7 @@
     [self.quizTypeControlOutlet2 addTarget:self action:@selector(disableOtherSegmentedControl:) forControlEvents:UIControlEventValueChanged];
     
     [self initSegmentedControls];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -233,7 +234,7 @@
         case 5:
             qType = @"Borders";
             break;
-        case 99:
+        case 6:
             qType = @"Random";
             break;
         default:

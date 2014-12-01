@@ -36,13 +36,18 @@
     } else {
         self.highScoreLabel.hidden = YES;
     }
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqual: @"highScore"]){
         HighScoreViewController *dest = segue.destinationViewController;
         dest.difficulty = self.difficulty;
-        dest.quizType = self.quizType;
+        if (self.quizType == 99) {
+            dest.quizType = 6;
+        } else {
+            dest.quizType = self.quizType;
+        }
     }
 }
 
